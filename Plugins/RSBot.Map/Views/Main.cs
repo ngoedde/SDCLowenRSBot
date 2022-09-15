@@ -10,7 +10,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
+using RSBot.Map.Client;
 
 namespace RSBot.Map.Views
 {
@@ -339,8 +341,16 @@ namespace RSBot.Map.Views
 
         private Image LoadSectorImage(int xSec, int ySec)
         {
-            var sectorImgName = $"{xSec}x{ySec}.ddj";
+            if (Game.Player.IsInDungeon)
+            {
+                var position = Game.Player.Position.ToDungeonPosition();
+                var region = Core.Objects.Region.GetDungeonRegion(Game.Player.Position);
 
+                var fileName = $"{region.XSector}x{region.YSector}.ddj";
+            }
+
+            var sectorImgName = $"{xSec}x{ySec}.ddj";
+            
             if (_cachedImages.ContainsKey(sectorImgName))
                 return (Image)_cachedImages[sectorImgName].Clone();
 

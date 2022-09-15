@@ -3,6 +3,7 @@ using RSBot.Core.Plugins;
 using RSBot.Map.Views;
 
 using System.Windows.Forms;
+using RSBot.Map.Client;
 
 namespace RSBot.Map
 {
@@ -29,6 +30,8 @@ namespace RSBot.Map
         public void Initialize()
         {
             Views.View.Instance = new Main();
+            
+            ReferenceManager.SubscribeEvents();
         }
 
         /// <summary>

@@ -87,6 +87,11 @@ namespace RSBot.Core.Objects.Spawn
         /// </summary>
         public float ActualSpeed => Movement.Type == MovementType.Walking ? State.WalkSpeed : State.RunSpeed;
 
+
+        /// <summary>Gets the position.</summary>
+        /// <value>The position.</value>
+        public Position Position => Movement.HasDestination ? Movement.Destination : Movement.Source;
+
         public void SetMovement(Movement movement)
         {
             Movement = movement;

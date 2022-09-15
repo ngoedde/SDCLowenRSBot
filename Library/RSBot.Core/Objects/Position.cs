@@ -119,8 +119,21 @@ namespace RSBot.Core.Objects
         /// </summary>
         /// <value><c>true</c> if this instance is in dungeon; otherwise, <c>false</c>.</value>
         public bool IsInDungeon => _YSector == 0x80;
-        
+
         #region Helper
+
+        public Position ToDungeonPosition()
+        {
+            var result = new Position();
+
+            var dungeonRegion = Region.GetDungeonRegion(this);
+            result.XSector = dungeonRegion.XSector;
+            result.YSector = dungeonRegion.YSector;
+            result.XOffset = XOffset - (192 * result.XSector);
+            result.ZOffset = ZOffset - (192 * result.YSector);
+
+            return result;
+        }
 
         /// <summary>
         /// Reads all requierd data from the packet and returns a new Postion object.

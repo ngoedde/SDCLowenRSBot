@@ -37,7 +37,7 @@ namespace RSBot.Core.Objects
         {
             Id = regionId;
         }
-
+        
         /// <summary>
         /// Froms the sectors.
         /// </summary>
@@ -48,6 +48,19 @@ namespace RSBot.Core.Objects
         {
             var buffer = new[] { xSector, ySector };
             return new Region(BitConverter.ToUInt16(buffer, 0));
+        }
+
+        /// <summary>Gets the dungeon region.</summary>
+        /// <param name="position">The position.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        public static Region GetDungeonRegion(Position position)
+        {
+            var xSec = MathF.Floor(position.XOffset / 192f);
+            var ySec = MathF.Floor(position.YOffset / 192f);
+
+            return FromSectors(Convert.ToByte(128 + xSec),Convert.ToByte(128 + ySec));
         }
 
         /// <summary>

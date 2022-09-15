@@ -133,6 +133,8 @@ namespace RSBot.Core
             Kernel.Proxy = new Proxy();
             Kernel.Proxy.Start(Port, ReferenceManager.DivisionInfo.Divisions[divisionIndex].GatewayServers[severIndex], ReferenceManager.GatewayInfo.Port);
 
+            Log.Notify($"[Network] Started proxy on port {Port}");
+
             Started = true;
         }
 
