@@ -77,7 +77,7 @@ namespace RSBot.Core.Objects
         {
             if (Game.ClientType <= GameClientType.Vietnam)
             {
-                return new JobInfo
+                return new()
                 {
                     Name = packet.ReadString(),
                     Type = (JobType)packet.ReadByte(),
@@ -88,7 +88,7 @@ namespace RSBot.Core.Objects
                 };
             }
 
-            return new JobInfo
+            return new()
             {
                 Name = packet.ReadString(),
                 Title = packet.ReadByte(),

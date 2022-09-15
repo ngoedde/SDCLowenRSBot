@@ -248,8 +248,8 @@ namespace RSBot.Core.Objects
         {
             var item = new InventoryItem
             {
-                MagicOptions = new List<MagicOptionInfo>(),
-                BindingOptions = new List<BindingOption>(),
+                MagicOptions = new(),
+                BindingOptions = new(),
                 Amount = 1,
                 Slot = destinationSlot
             };
@@ -275,7 +275,7 @@ namespace RSBot.Core.Objects
             if (record.IsEquip || record.IsFellowEquip || record.IsJobEquip)
             {
                 item.OptLevel = packet.ReadByte();
-                item.Attributes = new ItemAttributesInfo(packet.ReadULong());
+                item.Attributes = new(packet.ReadULong());
                 item.Durability = packet.ReadUInt();
 
                 //Read magic options for the item
@@ -387,7 +387,7 @@ namespace RSBot.Core.Objects
         /// <returns></returns>
         public TypeIdFilter GetFilter()
         {
-            return new TypeIdFilter(Record.TypeID1, Record.TypeID2, Record.TypeID3, Record.TypeID4);
+            return new(Record.TypeID1, Record.TypeID2, Record.TypeID3, Record.TypeID4);
         }
 
         public override string ToString()

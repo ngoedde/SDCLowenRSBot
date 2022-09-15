@@ -76,7 +76,7 @@ namespace RSBot.Core.Components
         internal static void Initialize()
         {
             Skills = Enum.GetValues(typeof(MonsterRarity)).Cast<MonsterRarity>().ToDictionary(v => v, v => new List<SkillInfo>());
-            Buffs = new List<SkillInfo>();
+            Buffs = new();
 
             EventManager.SubscribeEvent("OnCastSkill", new Action<uint>(OnCastSkill));
 
@@ -206,7 +206,7 @@ namespace RSBot.Core.Components
 
                     var paramTypeId3 = (byte)skill.Params[++i];
                     var paramTypeId4 = (byte)skill.Params[++i];
-                    list.Add(new TypeIdFilter(3, 1, paramTypeId3, paramTypeId4));
+                    list.Add(new(3, 1, paramTypeId3, paramTypeId4));
                 }
 
                 if (list.Count == 0)
@@ -220,7 +220,7 @@ namespace RSBot.Core.Components
             }
             else
             {
-                filter = new TypeIdFilter(p =>
+                filter = new(p =>
                     p.TypeID2 == 1 && p.TypeID3 == 6 && (
                     p.TypeID4 == (byte)skill.ReqCast_Weapon1 ||
                     ((byte)skill.ReqCast_Weapon2 != 0xFF && p.TypeID4 == (byte)skill.ReqCast_Weapon2)
@@ -240,7 +240,7 @@ namespace RSBot.Core.Components
             if (movingSlot == 6 && requiredItem.Record.TwoHanded == 0)
             {
                 // find and equip the shield item automatically
-                filter = new TypeIdFilter(3, 1, 4, (byte)(Game.Player.Race == ObjectCountry.Chinese ? 1 : 2));
+                filter = new(3, 1, 4, (byte)(Game.Player.Race == ObjectCountry.Chinese ? 1 : 2));
                 var shieldItem = Game.Player.Inventory.GetItemBest(filter);
                 if (shieldItem != null && shieldItem.Slot != 7)
                     shieldItem.Equip(7);

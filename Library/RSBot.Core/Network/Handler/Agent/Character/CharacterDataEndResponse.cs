@@ -84,19 +84,19 @@ namespace RSBot.Core.Network.Handler.Agent.Character
                     packet.ReadUShort();
             }
 
-            character.Inventory = new CharacterInventory(packet);
+            character.Inventory = new(packet);
 
             if (Game.ClientType >= GameClientType.Thailand)
-                character.Avatars = new InventoryItemCollection(packet);
+                character.Avatars = new(packet);
             else
-                character.Avatars = new InventoryItemCollection(5);
+                character.Avatars = new(5);
 
             // JOB2
             if (Game.ClientType > GameClientType.Vietnam)
             {
-                character.Job2SpecialtyBag = new InventoryItemCollection(packet);
+                character.Job2SpecialtyBag = new(packet);
 
-                character.Job2 = new InventoryItemCollection(packet);
+                character.Job2 = new(packet);
             }
 
             character.Skills = Skills.FromPacket(packet);
@@ -170,7 +170,7 @@ namespace RSBot.Core.Network.Handler.Agent.Character
             if (!Game.Clientless)
                 return;
 
-            PacketManager.SendPacket(new Packet(0x3012), PacketDestination.Server);
+            PacketManager.SendPacket(new(0x3012), PacketDestination.Server);
         }
     }
 }

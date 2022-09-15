@@ -62,12 +62,12 @@ namespace RSBot.Core.Objects.Spawn
             var result = new SpawnedPlayerGuild
             {
                 Id = packet.ReadUInt(),
-                Member = new SpawnedPlayerGuildMember
+                Member = new()
                 {
                     Nickname = packet.ReadString()
                 },
                 LastCrestRev = packet.ReadUInt(),
-                Union = new SpawnedPlayerUnion
+                Union = new()
                 {
                     Id = packet.ReadUInt(),
                     LastCrestRev = packet.ReadUInt()

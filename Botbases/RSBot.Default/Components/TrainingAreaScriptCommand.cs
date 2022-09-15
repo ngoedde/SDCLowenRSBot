@@ -13,7 +13,7 @@ namespace RSBot.Default.Components
 
         public bool IsRunning { get; private set; }
 
-        public Dictionary<string, string> Arguments => new Dictionary<string, string>
+        public Dictionary<string, string> Arguments => new()
         {
             {"PosX", "The X position"},
             {"PosY", "The Y position"},

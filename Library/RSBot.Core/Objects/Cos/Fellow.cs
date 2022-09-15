@@ -165,7 +165,7 @@ namespace RSBot.Core.Objects.Cos
             var unknown2 = packet.ReadInt();
             Settings = packet.ReadInt();
             Name = packet.ReadString();
-            Inventory = new InventoryItemCollection(packet);
+            Inventory = new(packet);
 
             if (string.IsNullOrWhiteSpace(Name))
                 Name = LanguageManager.GetLangBySpecificKey("RSBot", "LabelPetName");

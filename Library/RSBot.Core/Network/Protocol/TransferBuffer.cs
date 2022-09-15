@@ -33,7 +33,7 @@
                 System.Buffer.BlockCopy(rhs.m_buffer, 0, m_buffer, 0, m_buffer.Length);
                 m_offset = rhs.m_offset;
                 m_size = rhs.m_size;
-                m_lock = new object();
+                m_lock = new();
             }
         }
 
@@ -42,7 +42,7 @@
             m_buffer = null;
             m_offset = 0;
             m_size = 0;
-            m_lock = new object();
+            m_lock = new();
         }
 
         public TransferBuffer(int length, int offset, int size)
@@ -50,7 +50,7 @@
             m_buffer = new byte[length];
             m_offset = offset;
             m_size = size;
-            m_lock = new object();
+            m_lock = new();
         }
 
         public TransferBuffer(int length)
@@ -58,7 +58,7 @@
             m_buffer = new byte[length];
             m_offset = 0;
             m_size = 0;
-            m_lock = new object();
+            m_lock = new();
         }
 
         public TransferBuffer(byte[] buffer, int offset, int size, bool assign)
@@ -74,7 +74,7 @@
             }
             m_offset = offset;
             m_size = size;
-            m_lock = new object();
+            m_lock = new();
         }
     }
 }

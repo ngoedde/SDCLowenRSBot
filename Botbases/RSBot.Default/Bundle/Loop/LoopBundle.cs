@@ -58,7 +58,7 @@ namespace RSBot.Default.Bundle.Loop
         /// </summary>
         public void Refresh()
         {
-            Config = new LoopConfig
+            Config = new()
             {
                 WalkScript = PlayerConfig.Get<string>("RSBot.Walkback.File"),
                 UseSpeedDrug = PlayerConfig.Get<bool>("RSBot.Walkback.UseSpeedDrug"),

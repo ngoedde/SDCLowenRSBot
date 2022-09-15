@@ -13,7 +13,7 @@ namespace RSBot.Statistics
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             InternalName = "RSBot.Statistics",
@@ -29,7 +29,7 @@ namespace RSBot.Statistics
         public void Initialize()
         {
             CalculatorRegistry.Initialize();
-            Views.View.Instance = new Views.Main();
+            Views.View.Instance = new();
         }
 
         /// <summary>

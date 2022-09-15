@@ -82,7 +82,7 @@ namespace RSBot.Party.Bundle.Commands
         /// </summary>
         public void Refresh()
         {
-            Config = new CommandsConfig()
+            Config = new()
             {
                 PlayerList = PlayerConfig.GetArray<string>("RSBot.Party.Commands.PlayersList"),
                 ListenFromList = PlayerConfig.Get<bool>("RSBot.Party.Commands.ListenOnlyList"),

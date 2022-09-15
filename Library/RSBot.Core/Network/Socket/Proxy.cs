@@ -145,7 +145,7 @@ namespace RSBot.Core.Network
             IsConnectedToGatewayserver = false;
             IsConnectedToAgentserver = false;
 
-            Server = new Server();
+            Server = new();
             Server.OnConnected += Server_OnConnected;
             Server.OnDisconnected += Server_OnDisconnected;
             Server.OnPacketReceived += Server_OnPacketReceived;
@@ -157,7 +157,7 @@ namespace RSBot.Core.Network
         /// <param name="clientPort">The client port.</param>
         private void CreateNewClientInstance(ushort clientPort)
         {
-            Client = new Client();
+            Client = new();
             Client.OnConnected += Client_OnConnected;
             Client.OnPacketReceived += Client_OnPacketReceived;
             Client.OnDisconnected += Client_OnDisconnected;

@@ -110,8 +110,8 @@ namespace RSBot.Core.Network
 
             try
             {
-                _protocol = new SecurityProtocol();
-                _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _protocol = new();
+                _socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 try
                 {
@@ -126,7 +126,7 @@ namespace RSBot.Core.Network
 
                 if (_netMessageDispatcherThread == null)
                 {
-                    _netMessageDispatcherThread = new Thread(ProcessPacketsThreaded)
+                    _netMessageDispatcherThread = new(ProcessPacketsThreaded)
                     {
                         Name = "Proxy.Network.Server.PacketProcessor",
                         IsBackground = true

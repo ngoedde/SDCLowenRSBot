@@ -8,7 +8,7 @@ namespace RSBot.Core.Network.SecurityAPI
 
         public PacketWriter()
         {
-            m_ms = new MemoryStream();
+            m_ms = new();
             this.OutStream = m_ms;
         }
 

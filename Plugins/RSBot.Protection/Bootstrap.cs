@@ -17,7 +17,7 @@ namespace RSBot.Protection
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Protection",
@@ -61,7 +61,7 @@ namespace RSBot.Protection
         /// <returns></returns>
         public Control GetView()
         {
-            return View.Instance ?? (View.Instance = new Main());
+            return View.Instance ?? (View.Instance = new());
         }
 
         /// <summary>

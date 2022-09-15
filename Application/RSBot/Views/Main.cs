@@ -138,7 +138,7 @@ namespace RSBot.Views
                 {
                     Name = "overlay",
                     Text = LanguageManager.GetLang("PleaseEnterGame"),
-                    Location = new Point(tabMain.Width / 2 - 110, tabMain.Height - 150),
+                    Location = new(tabMain.Width / 2 - 110, tabMain.Height - 150),
                 };
 
                 tabPage.Controls.Add(info);
@@ -190,7 +190,7 @@ namespace RSBot.Views
                 {
                     Name = "overlay",
                     Text = LanguageManager.GetLang("PleaseEnterGame"),
-                    Location = new Point(tabMain.Width / 2 - 110, tabMain.Height - 150)
+                    Location = new(tabMain.Width / 2 - 110, tabMain.Height - 150)
                 };
 
                 tabPage.Controls.Add(info);
@@ -286,7 +286,7 @@ namespace RSBot.Views
             plugin.Translate();
             content.Dock = DockStyle.Fill;
 
-            window.Size = new Size(content.Size.Width + 15, content.Size.Height + 15);
+            window.Size = new(content.Size.Width + 15, content.Size.Height + 15);
             window.Controls.Add(content);
             window.Show();
         }

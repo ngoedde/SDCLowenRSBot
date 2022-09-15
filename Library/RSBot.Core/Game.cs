@@ -130,7 +130,7 @@ namespace RSBot.Core
 
             Port = NetworkUtilities.GetFreePort(1500, 2000, 1);
 
-            Kernel.Proxy = new Proxy();
+            Kernel.Proxy = new();
             Kernel.Proxy.Start(Port, ReferenceManager.DivisionInfo.Divisions[divisionIndex].GatewayServers[severIndex], ReferenceManager.GatewayInfo.Port);
 
             Started = true;
@@ -154,8 +154,8 @@ namespace RSBot.Core
         public static void Initialize()
         {
             ClientType = GlobalConfig.GetEnum("RSBot.Game.ClientType", GameClientType.Vietnam);
-            ReferenceManager = new ReferenceManager();
-            Party = new Party();
+            ReferenceManager = new();
+            Party = new();
 
             SkillManager.Initialize();
             ShoppingManager.Initialize();

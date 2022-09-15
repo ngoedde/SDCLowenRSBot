@@ -28,9 +28,9 @@ namespace RSBot.Core.Network.Handler.Agent.Party
         /// <param name="packet">The packet.</param>
         public void Invoke(Packet packet)
         {
-            Game.Party = new Objects.Party.Party
+            Game.Party = new()
             {
-                Members = new List<PartyMember>()
+                Members = new()
             };
 
             packet.ReadByte(); //FF

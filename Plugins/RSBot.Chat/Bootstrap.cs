@@ -14,7 +14,7 @@ namespace RSBot.Chat
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             InternalName = "RSBot.Chat",
             DisplayAsTab = true,
@@ -28,7 +28,7 @@ namespace RSBot.Chat
         /// </summary>
         public void Initialize()
         {
-            Views.View.Instance = new Main();
+            Views.View.Instance = new();
         }
 
         /// <summary>

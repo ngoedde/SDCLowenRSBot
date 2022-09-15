@@ -46,7 +46,7 @@ namespace RSBot.Default.Bundle.Loot
         /// </summary>
         public void Refresh()
         {
-            Config = new LootConfig
+            Config = new()
             {
                 UseAbilityPet = PlayerConfig.Get<bool>("RSBot.Items.Pickup.EnableAbilityPet", true),
                 DontPickupWhileBotting = PlayerConfig.Get<bool>("RSBot.Items.Pickup.DontPickupWhileBotting", true),

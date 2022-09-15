@@ -94,9 +94,9 @@ namespace RSBot.Alchemy.Views
 
             EventManager.SubscribeEvent("OnAlchemy", new Action<AlchemyType>(OnAlchemy));
 
-            _enhanceSettingsView = new EnhanceSettingsView { Visible = true, Dock = DockStyle.Fill };
-            _magicOptionsSettingsView = new MagicOptionsSettingsView { Visible = false, Dock = DockStyle.Fill };
-            _attributeSettingsView = new AttributesSettingsView { Visible = false, Dock = DockStyle.Fill };
+            _enhanceSettingsView = new() { Visible = true, Dock = DockStyle.Fill };
+            _magicOptionsSettingsView = new() { Visible = false, Dock = DockStyle.Fill };
+            _attributeSettingsView = new() { Visible = false, Dock = DockStyle.Fill };
 
             panelSettings.Controls.Add(_enhanceSettingsView);
             panelSettings.Controls.Add(_magicOptionsSettingsView);

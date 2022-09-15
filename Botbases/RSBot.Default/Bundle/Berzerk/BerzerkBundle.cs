@@ -55,7 +55,7 @@ namespace RSBot.Default.Bundle.Berzerk
         /// </summary>
         public void Refresh()
         {
-            Config = new BerzerkConfig
+            Config = new()
             {
                 WhenFull = PlayerConfig.Get<bool>("RSBot.Berzerk.WhenFull"),
                 BeeingAttackedByAwareMonster = PlayerConfig.Get<bool>("RSBot.Berzerk.MonsterAvoidance"),

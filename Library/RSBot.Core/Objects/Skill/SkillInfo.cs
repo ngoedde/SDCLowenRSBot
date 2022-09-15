@@ -172,7 +172,7 @@ namespace RSBot.Core.Objects.Skill
         /// <returns></returns>
         internal static SkillInfo FromPacket(Packet packet)
         {
-            return new SkillInfo(packet.ReadUInt(), packet.ReadBool());
+            return new(packet.ReadUInt(), packet.ReadBool());
         }
 
         /// <summary>

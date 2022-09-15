@@ -87,10 +87,10 @@ namespace RSBot.Core.Network
         {
             try
             {
-                _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _listener = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 //Thread Management
-                _dispatcherThread = new Thread(PacketDispatcherCallback)
+                _dispatcherThread = new(PacketDispatcherCallback)
                 {
                     Name = "Proxy.Network.Client.PacketProcessor",
                     IsBackground = true
@@ -178,7 +178,7 @@ namespace RSBot.Core.Network
                 EnablePacketDispatcher = true;
                 _socket = _listener.EndAccept(ar);
 
-                _protocol = new SecurityProtocol();
+                _protocol = new();
                 _protocol.GenerateSecurity(true, true, true);
 
                 _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, OnBeginReceiveCallback, null);

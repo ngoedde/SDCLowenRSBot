@@ -30,13 +30,13 @@ namespace RSBot.Alchemy
 
         public Control GetView()
         {
-            return Globals.View ?? (Globals.View = new Main());
+            return Globals.View ?? (Globals.View = new());
         }
 
         public void Initialize()
         {
             AlchemyEventsSubscriber.Subscribe();
-            Globals.Botbase = new Botbase();
+            Globals.Botbase = new();
 
             Log.AppendFormat(LogLevel.Notify, "[Alchemy] Initialized botbase");
         }

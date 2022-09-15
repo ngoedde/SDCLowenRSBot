@@ -8,8 +8,8 @@ namespace RSBot.Core.Client
     {
         public struct Colour
         {
-            public static Colour ABGR = new Colour { R = 0, G = 8, B = 16, A = 24 };
-            public static Colour ARGB = new Colour { R = 16, G = 8, B = 0, A = 24 };
+            public static Colour ABGR = new() { R = 0, G = 8, B = 16, A = 24 };
+            public static Colour ARGB = new() { R = 16, G = 8, B = 0, A = 24 };
 
             public int R, G, B, A;
         }
@@ -144,10 +144,10 @@ namespace RSBot.Core.Client
 
             if (PixelsData == null)
             {
-                return new Bitmap(256, 256);
+                return new(256, 256);
             }
             var BMP = new Bitmap(Width, Height, PixelFormat.Format32bppArgb);
-            var BMPData = BMP.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.WriteOnly, BMP.PixelFormat);
+            var BMPData = BMP.LockBits(new(0, 0, Width, Height), ImageLockMode.WriteOnly, BMP.PixelFormat);
             Marshal.Copy(PixelsData, 0, BMPData.Scan0, PixelsData.Length);
             BMP.UnlockBits(BMPData);
             BMPData = null;

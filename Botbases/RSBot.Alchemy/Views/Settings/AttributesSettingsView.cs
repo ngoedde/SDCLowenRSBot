@@ -66,7 +66,7 @@ namespace RSBot.Alchemy.Views.Settings
         {
             try
             {
-                _attributePanels = new List<AttributeInfoPanel>(6);
+                _attributePanels = new(6);
                 var selectedItem = Globals.View.SelectedItem;
 
                 if (selectedItem == null)

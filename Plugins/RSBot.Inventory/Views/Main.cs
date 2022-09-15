@@ -30,7 +30,7 @@ namespace RSBot.Inventory.Views
         /// </summary>
         public Main()
         {
-            _lock = new object();
+            _lock = new();
             InitializeComponent();
             SubscribeEvents();
 

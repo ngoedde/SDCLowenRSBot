@@ -118,7 +118,7 @@ namespace RSBot.Core.Objects.Party
             result.Level = packet.ReadByte();
             result.HealthMana = packet.ReadByte(); //0-A|0-A -> 0%-100%|0%-100%
 
-            result.Position = new Position
+            result.Position = new()
             {
                 XSector = packet.ReadByte(),
                 YSector = packet.ReadByte()

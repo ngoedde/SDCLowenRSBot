@@ -8,7 +8,7 @@ namespace RSBot.Skills
 {
     public class Bootstrap : IPlugin
     {
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Skills",
@@ -20,7 +20,7 @@ namespace RSBot.Skills
         /// <inheritdoc />
         public void Initialize()
         {
-            Views.View.Instance = new Main();
+            Views.View.Instance = new();
         }
 
         /// <inheritdoc />

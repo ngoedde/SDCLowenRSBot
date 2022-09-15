@@ -25,7 +25,7 @@ namespace RSBot.Inventory.Views
 
             InventoryItem = inventoryItem;
             Text = $"Item properties - {InventoryItem.Record.GetRealName()} [Id: {InventoryItem.Record.ID}, TID2: {InventoryItem.Record.TypeID2}, TID3: {InventoryItem.Record.TypeID3}, TID4: {InventoryItem.Record.TypeID4}]";
-            Size = new Size(620, 800);
+            Size = new(620, 800);
 
             try
             {

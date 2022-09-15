@@ -37,7 +37,7 @@ namespace RSBot.Core.Objects.Spawn
         /// <returns></returns>
         internal static SpawnedPlayerStall FromPacket(Packet packet)
         {
-            return new SpawnedPlayerStall
+            return new()
             {
                 Name = packet.ReadConditonalString(),
                 DecorationId = packet.ReadUInt(),

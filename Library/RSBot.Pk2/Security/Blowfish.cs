@@ -169,7 +169,7 @@ namespace RSBot.Pk2.Security
         {
             if (i < 0 || i > 3)
             {
-                throw (new Exception(String.Format("[Blowfish::S] Invalid i index of [{0}].", i)));
+                throw (new(String.Format("[Blowfish::S] Invalid i index of [{0}].", i)));
             }
 
             x >>= (24 - (8 * i));

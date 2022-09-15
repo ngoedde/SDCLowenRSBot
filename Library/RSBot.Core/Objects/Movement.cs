@@ -59,7 +59,7 @@ namespace RSBot.Core.Objects
 
             if (result.HasDestination)
             {
-                result.Destination = new Position
+                result.Destination = new()
                 {
                     XSector = packet.ReadByte(),
                     YSector = packet.ReadByte(),
@@ -124,7 +124,7 @@ namespace RSBot.Core.Objects
 
             if (result.HasDestination)
             {
-                result.Destination = new Position { XSector = packet.ReadByte(), YSector = packet.ReadByte() };
+                result.Destination = new() { XSector = packet.ReadByte(), YSector = packet.ReadByte() };
 
                 if (!result.Destination.IsInDungeon)
                 {

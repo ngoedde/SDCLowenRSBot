@@ -24,7 +24,7 @@
         /// <param name="packet">The packet.</param>
         public void Invoke(Packet packet)
         {
-            Game.ChunkedPacket = new Packet(0);
+            Game.ChunkedPacket = new(0);
             Game.Player.GuildStorage = Game.Player.GuildStorage ?? new Objects.Inventory.Storage();
             Game.Player.GuildStorage.Gold = packet.ReadULong();
         }

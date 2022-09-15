@@ -14,7 +14,7 @@ namespace RSBot.Map
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Map",
@@ -28,7 +28,7 @@ namespace RSBot.Map
         /// </summary>
         public void Initialize()
         {
-            Views.View.Instance = new Main();
+            Views.View.Instance = new();
         }
 
         /// <summary>

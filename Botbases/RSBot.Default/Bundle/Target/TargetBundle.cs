@@ -103,7 +103,7 @@ namespace RSBot.Default.Bundle.Target
         /// </summary>
         public void Refresh()
         {
-            _blacklistTimers = new Dictionary<SpawnedBionic, BlacklistTimer>(8);
+            _blacklistTimers = new(8);
         }
 
         public void Stop()

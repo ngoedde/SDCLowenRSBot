@@ -49,8 +49,8 @@ namespace RSBot.Party.Views
             selectedMemberBuffs.SmallImageList = Core.Extensions.ListViewExtensions.StaticImageList;
             listPartyBuffSkills.SmallImageList = Core.Extensions.ListViewExtensions.StaticImageList;
 
-            _selectedBuffingGroup = new ListViewItem();
-            _buffings = new List<BuffingPartyMember>();
+            _selectedBuffingGroup = new();
+            _buffings = new();
             CheckForIllegalCrossThreadCalls = false;
             cbPartySearchPurpose.SelectedIndex = 0;
 
@@ -135,7 +135,7 @@ namespace RSBot.Party.Views
             var collection = settings.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var item in collection)
-                buffingMembers.Add(new BuffingPartyMember(item));
+                buffingMembers.Add(new(item));
 
             _buffings = buffingMembers;
         }
@@ -243,10 +243,10 @@ namespace RSBot.Party.Views
                         party.Leader == Game.Player.JobInformation.Name ||
                         (Game.Party?.Leader?.Name == party.Leader))
                     {
-                        listItem.Font = new Font(Font, FontStyle.Bold);
+                        listItem.Font = new(Font, FontStyle.Bold);
 
                         listItem.BackColor = ControlPaint.Light(ColorScheme.BackColor, .15f);
-                        listItem.Font = new Font(Font, FontStyle.Bold);
+                        listItem.Font = new(Font, FontStyle.Bold);
 
                         listViewItems.Insert(0, listItem);
 
@@ -385,7 +385,7 @@ namespace RSBot.Party.Views
                 else
                     subItem.ForeColor = Color.DarkRed;
 
-                subItem.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+                subItem.Font = new("Segoe UI", 9f, FontStyle.Bold);
 
                 foreach (var @group in listPartyBuffSkills.Groups.Cast<ListViewGroup>().Where(@group => Convert.ToInt32(@group.Tag) == skill.Record.ReqCommon_Mastery1))
                     item.Group = @group;
@@ -926,7 +926,7 @@ namespace RSBot.Party.Views
                     return;
                 }
 
-                _buffings.Add(new BuffingPartyMember
+                _buffings.Add(new()
                 {
                     Name = partyMember.Name,
                     Group = dialogValue

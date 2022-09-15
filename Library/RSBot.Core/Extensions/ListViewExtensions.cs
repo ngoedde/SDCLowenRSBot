@@ -22,23 +22,23 @@ namespace RSBot.Core.Extensions
         /// <summary>
         /// The sync object
         /// </summary>
-        private static object _lock { get; } = new object();
+        private static object _lock { get; } = new();
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
         static ListViewExtensions()
         {
-            StaticImageList = new ImageList
+            StaticImageList = new()
             {
                 ColorDepth = ColorDepth.Depth32Bit,
-                ImageSize = new Size(24, 24)
+                ImageSize = new(24, 24)
             };
 
-            StaticItemsImageList = new ImageList
+            StaticItemsImageList = new()
             {
                 ColorDepth = ColorDepth.Depth32Bit,
-                ImageSize = new Size(24, 24)
+                ImageSize = new(24, 24)
             };
         }
 

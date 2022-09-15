@@ -12,7 +12,7 @@ namespace RSBot.Core.Extensions
         /// <returns></returns>
         public static Vector2 ToVector2(this Position position)
         {
-            return new Vector2(position.XCoordinate, position.YCoordinate);
+            return new(position.XCoordinate, position.YCoordinate);
         }
     }
 }

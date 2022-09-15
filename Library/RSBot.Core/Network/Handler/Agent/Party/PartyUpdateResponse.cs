@@ -86,7 +86,7 @@ namespace RSBot.Core.Network.Handler.Agent.Party
                             break;
 
                         case PartyMemberUpdateType.Position:
-                            member.Position = new Position
+                            member.Position = new()
                             {
                                 XSector = packet.ReadByte(),
                                 YSector = packet.ReadByte(),

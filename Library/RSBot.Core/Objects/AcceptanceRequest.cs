@@ -74,7 +74,7 @@ namespace RSBot.Core.Objects
         /// <returns>Created <seealso cref="AcceptanceRequest"/></returns>
         public static AcceptanceRequest FromPacket(Packet packet)
         {
-            return new AcceptanceRequest
+            return new()
             {
                 Type = (InviteRequestType)packet.ReadByte(),
                 PlayerUniqueId = packet.ReadUInt()

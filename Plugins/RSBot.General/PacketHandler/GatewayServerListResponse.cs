@@ -30,7 +30,7 @@ namespace RSBot.General.PacketHandler
         /// <param name="packet">The packet.</param>
         public void Invoke(Packet packet)
         {
-            Serverlist.Servers = new List<Server>();
+            Serverlist.Servers = new();
 
             while (packet.ReadByte() != 0)
             {
@@ -78,7 +78,7 @@ namespace RSBot.General.PacketHandler
                         serverName = serverName.Remove(0, 3);
                 }
 
-                Serverlist.Servers.Add(new Server
+                Serverlist.Servers.Add(new()
                 {
                     Id = id,
                     Name = serverName,

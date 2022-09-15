@@ -67,7 +67,7 @@ namespace RSBot.Default
         /// <returns></returns>
         public Control GetView()
         {
-            return Container.View ?? (Container.View = new Main());
+            return Container.View ?? (Container.View = new());
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace RSBot.Default
         /// <exception cref="System.NotImplementedException"></exception>
         public void Initialize()
         {
-            Container.Lock = new object();
+            Container.Lock = new();
             Subscriber.ConfigSubscriber.SubscribeEvents();
             Subscriber.TeleportSubscriber.SubscribeEvents();
 
@@ -99,7 +99,7 @@ namespace RSBot.Default
             }
 
             Bundles.Reload();
-            Container.Bot = new Botbase();
+            Container.Bot = new();
 
             //Begin the loopback
             if (Container.Bot.Area.CenterPosition.DistanceTo(Game.Player.Movement.Source) > 80)

@@ -37,7 +37,7 @@ namespace RSBot.Core.Components.Collision
         /// <param name="filePath">The file path.</param>
         private void ReadIndex(string filePath)
         {
-            Index = new Dictionary<int, long>();
+            Index = new();
             using (var reader = new BinaryReader(File.OpenRead(filePath)))
                 while (reader.BaseStream.Position < reader.BaseStream.Length)
                     Index.Add(reader.ReadInt32(), reader.ReadInt64());
@@ -51,7 +51,7 @@ namespace RSBot.Core.Components.Collision
         public List<Line> GetCollisions(int regionId)
         {
             if (!Index.ContainsKey(regionId))
-                return new List<Line>();
+                return new();
 
             var sectorCollisions = new List<Line>();
 
@@ -70,8 +70,8 @@ namespace RSBot.Core.Components.Collision
                 {
                     var line = new Line
                     {
-                        Source = new Point(reader.ReadInt32(), reader.ReadInt32()),
-                        Destination = new Point(reader.ReadInt32(), reader.ReadInt32())
+                        Source = new(reader.ReadInt32(), reader.ReadInt32()),
+                        Destination = new(reader.ReadInt32(), reader.ReadInt32())
                     };
 
                     sectorCollisions.Add(line);
@@ -83,8 +83,8 @@ namespace RSBot.Core.Components.Collision
                 {
                     var line = new Line
                     {
-                        Source = new Point(reader.ReadInt32(), reader.ReadInt32()),
-                        Destination = new Point(reader.ReadInt32(), reader.ReadInt32())
+                        Source = new(reader.ReadInt32(), reader.ReadInt32()),
+                        Destination = new(reader.ReadInt32(), reader.ReadInt32())
                     };
 
                     sectorCollisions.Add(line);

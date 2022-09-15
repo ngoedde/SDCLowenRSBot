@@ -218,7 +218,7 @@ namespace RSBot.Core.Objects.Spawn
             InventorySize = packet.ReadByte();
 
             var itemCount = packet.ReadByte();
-            Inventory = new Dictionary<RefObjItem, byte>();
+            Inventory = new();
 
             for (var i = 0; i < itemCount; i++)
             {
@@ -240,7 +240,7 @@ namespace RSBot.Core.Objects.Spawn
                     Inventory.Add(itemObj, packet.ReadByte()); //Item object and the "+" value as value
             }
 
-            Avatars = new Dictionary<RefObjItem, byte>();
+            Avatars = new();
             if (Game.ClientType >= GameClientType.Thailand)
             {
                 AvatarInventorySize = packet.ReadByte();
@@ -324,7 +324,7 @@ namespace RSBot.Core.Objects.Spawn
                 Guild.Name = guildName;
             }
             else
-                Guild = new SpawnedPlayerGuild { Name = guildName };
+                Guild = new() { Name = guildName };
 
             if(Game.ClientType > GameClientType.Chinese && InteractMode == InteractMode.P2N_TALK2)
                 Stall = SpawnedPlayerStall.FromPacket(packet);

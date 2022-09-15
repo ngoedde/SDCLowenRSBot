@@ -289,7 +289,7 @@ namespace RSBot.Core.Client
                     try
                     {
                         var reference = new TReference();
-                        if (reference.Load(new ReferenceParser(line)))
+                        if (reference.Load(new(line)))
                             destination.Add(reference);
                     }
                     catch
@@ -316,7 +316,7 @@ namespace RSBot.Core.Client
                     try
                     {
                         var reference = new TReference();
-                        if (reference.Load(new ReferenceParser(line)))
+                        if (reference.Load(new(line)))
                             destination[reference.PrimaryKey] = reference;
                     }
                     catch

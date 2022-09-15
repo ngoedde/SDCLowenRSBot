@@ -25,7 +25,7 @@
         public void Invoke(Packet packet)
         {
             Game.Player?.StopMoving();
-            Game.ChunkedPacket = new Packet(0);
+            Game.ChunkedPacket = new(0);
         }
     }
 }

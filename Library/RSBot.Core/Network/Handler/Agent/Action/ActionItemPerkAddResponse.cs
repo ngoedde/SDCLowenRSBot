@@ -52,7 +52,7 @@ namespace RSBot.Core.Network.Handler.Agent.Action
             }
             else
             {
-                target.State.ActiveItemPerks.Add(token, new ItemPerk
+                target.State.ActiveItemPerks.Add(token, new()
                 {
                     ItemId = refObjItemId,
                     RemainingTime = remainingTime,

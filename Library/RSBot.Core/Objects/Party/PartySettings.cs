@@ -66,49 +66,49 @@
             switch (type)
             {
                 case 0:
-                    return new PartySettings();
+                    return new();
 
                 case 1:
-                    return new PartySettings
+                    return new()
                     {
                         ExperienceAutoShare = true
                     };
 
                 case 2:
-                    return new PartySettings
+                    return new()
                     {
                         ItemAutoShare = true
                     };
 
                 case 3:
-                    return new PartySettings
+                    return new()
                     {
                         ItemAutoShare = true,
                         ExperienceAutoShare = true
                     };
 
                 case 4:
-                    return new PartySettings
+                    return new()
                     {
                         AllowInvitation = true
                     };
 
                 case 5:
-                    return new PartySettings
+                    return new()
                     {
                         ExperienceAutoShare = true,
                         AllowInvitation = true
                     };
 
                 case 6:
-                    return new PartySettings
+                    return new()
                     {
                         ItemAutoShare = true,
                         AllowInvitation = true
                     };
 
                 case 7:
-                    return new PartySettings
+                    return new()
                     {
                         ItemAutoShare = true,
                         ExperienceAutoShare = true,
@@ -116,7 +116,7 @@
                     };
             }
 
-            return new PartySettings();
+            return new();
         }
 
         /// <summary>

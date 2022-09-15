@@ -275,7 +275,7 @@ namespace RSBot.Pk2.Types
         /// <returns></returns>
         public PK2Block GetChildBlock()
         {
-            return new PK2Block(_fileAdapter, _fileAdapter.ReadData((long)Position, 2560), Position);
+            return new(_fileAdapter, _fileAdapter.ReadData((long)Position, 2560), Position);
         }
 
         public override string ToString()

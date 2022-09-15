@@ -84,13 +84,13 @@ namespace RSBot.Default.Bundle.Movement
         /// </summary>
         public void Refresh()
         {
-            Config = new MovementConfig
+            Config = new()
             {
                 WalkAround = PlayerConfig.Get<bool>("RSBot.Area.WalkAround"),
                 WalkToCenter = PlayerConfig.Get<bool>("RSBot.Area.GoToCenter", true)
             };
 
-            _random = new Random();
+            _random = new();
         }
 
         public void Stop()

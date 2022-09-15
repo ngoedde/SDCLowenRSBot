@@ -63,7 +63,7 @@ namespace RSBot.Pk2.Types
                     if (BlowfishUtilities.GetBlowfish() != null)
                         entryBuffer = BlowfishUtilities.GetBlowfish().Decode(entryBuffer);
 
-                    Entries[i] = new PK2Entry(_fileAdapter, entryBuffer, this, (byte)i);
+                    Entries[i] = new(_fileAdapter, entryBuffer, this, (byte)i);
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace RSBot.Pk2.Types
             if (_fileAdapter == null)
                 throw new PK2NotLoadedException();
 
-            return HasBlocks ? new PK2Block(_fileAdapter, _fileAdapter.ReadData((long)Entries[19].NextChain, 2560), Entries[19].NextChain) : this;
+            return HasBlocks ? new(_fileAdapter, _fileAdapter.ReadData((long)Entries[19].NextChain, 2560), Entries[19].NextChain) : this;
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace RSBot.Inventory
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Inventory",
@@ -29,7 +29,7 @@ namespace RSBot.Inventory
         /// </summary>
         public void Initialize()
         {
-            Views.View.Instance = new Main();
+            Views.View.Instance = new();
 
             BuyItemSubscriber.SubscribeEvents();
         }

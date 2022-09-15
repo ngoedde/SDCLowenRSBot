@@ -13,7 +13,7 @@ namespace RSBot.Items
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Items",
@@ -27,7 +27,7 @@ namespace RSBot.Items
         /// </summary>
         public void Initialize()
         {
-            Views.View.Instance = new Main();
+            Views.View.Instance = new();
         }
 
         /// <summary>

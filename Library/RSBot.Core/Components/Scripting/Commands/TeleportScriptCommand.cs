@@ -11,7 +11,7 @@ namespace RSBot.Core.Components.Scripting.Commands
         public string Name => "teleport";
 
         public bool IsRunning { get; private set; }
-        public Dictionary<string, string> Arguments => new Dictionary<string, string>
+        public Dictionary<string, string> Arguments => new()
         {
             {"Codename", "The code name of the NPC"},
             {"Destination", "The id of the destination"}

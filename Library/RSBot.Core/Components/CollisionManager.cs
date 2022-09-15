@@ -44,7 +44,7 @@ namespace RSBot.Core.Components
                 return;
             }
 
-            _collisionLoader = new CollisionLoader(collisionFile, collisionIndexFile);
+            _collisionLoader = new(collisionFile, collisionIndexFile);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace RSBot.Core.Components
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            Region = new Objects.Region(regionId);
+            Region = new(regionId);
             LoadedRegions = Objects.Region.GetSurroundingRegions(Region.XSector, Region.YSector);
 
             var rawLines = new Dictionary<int, List<Line>>();
@@ -139,13 +139,11 @@ namespace RSBot.Core.Components
                     //Recalculate the obstacle position to match the grid (3x3) instead of only one sector.
                     var translatedLine = new Line
                     {
-                        Source = new Point
-                        (
+                        Source = new(
                             Convert.ToInt32(gridOffset.X + line.Source.X),
                             Convert.ToInt32(gridOffset.Y + line.Source.Y)
                         ),
-                        Destination = new Point
-                        (
+                        Destination = new(
                             Convert.ToInt32(gridOffset.X + line.Destination.X),
                             Convert.ToInt32(gridOffset.Y + line.Destination.Y)
                         )
@@ -220,7 +218,7 @@ namespace RSBot.Core.Components
                     break;
             }
 
-            return new Point(offsetX, offsetY);
+            return new(offsetX, offsetY);
         }
 
         /// <summary>
@@ -258,7 +256,7 @@ namespace RSBot.Core.Components
             vectorY *= factor;
 
             // d. calculate and Draw the new vector,
-            return new Point((int)(a.X + vectorX), (int)(a.Y + vectorY));
+            return new((int)(a.X + vectorX), (int)(a.Y + vectorY));
         }
     }
 }

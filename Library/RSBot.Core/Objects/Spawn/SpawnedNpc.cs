@@ -7,7 +7,7 @@ namespace RSBot.Core.Objects.Spawn
         /// <summary>
         /// Gets or sets the npc talk.
         /// </summary>
-        public NpcTalk Talk { get; } = new NpcTalk();
+        public NpcTalk Talk { get; } = new();
 
         /// <summary>
         /// <inheritdoc/>

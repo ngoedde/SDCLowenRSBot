@@ -56,9 +56,9 @@ namespace RSBot.Core.Objects.Exchange
             var playerIsSender = ownerUniqueId == Game.Player.UniqueId;
 
             if (playerIsSender)
-                SendingItems = new List<ExchangeItem>(12);
+                SendingItems = new(12);
             else
-                ReceivingItems = new List<ExchangeItem>(12);
+                ReceivingItems = new(12);
 
             var itemCount = packet.ReadByte();
             for (var i = 0; i < itemCount; i++)

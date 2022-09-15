@@ -11,7 +11,7 @@ namespace RSBot.Core.Objects.Spawn
         /// <summary>
         /// Synchroniztion object.
         /// </summary>
-        protected object _lock { get; } = new object();
+        protected object _lock { get; } = new();
 
         /// <summary>
         /// Gets or sets the unique identifier.

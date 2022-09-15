@@ -23,7 +23,7 @@ namespace RSBot.Core.Client.ReferenceObjects
             parser.TryParse(2, out TypeId3);
             parser.TryParse(3, out TypeId4);
 
-            AvailableMagicOptions = new List<string>(80);
+            AvailableMagicOptions = new(80);
             for (var i = 4; i < parser.GetColumnCount(); i++)
             {
                 if (parser.TryParse(i, out string option))

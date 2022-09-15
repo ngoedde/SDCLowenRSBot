@@ -13,7 +13,7 @@ namespace RSBot.Core.Objects.Cos
             Settings = packet.ReadInt();
             Name = packet.ReadString();
 
-            Inventory = new InventoryItemCollection(packet);
+            Inventory = new(packet);
             OwnerUniqueId = packet.ReadUInt();
             packet.ReadByte(); // inventorySlot
 

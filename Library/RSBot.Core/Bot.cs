@@ -49,7 +49,7 @@ namespace RSBot.Core
             if (Running || Botbase == null) 
                 return;
 
-            TokenSource = new CancellationTokenSource();
+            TokenSource = new();
 
             Task.Factory.StartNew(async (e) => 
             {

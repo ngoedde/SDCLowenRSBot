@@ -144,8 +144,7 @@ namespace RSBot.Alchemy.Views.Settings
                                 matchingMagicStones =
                                     AlchemyItemHelper.GetStonesByGroup(magicOption.Record.Level, assignment.Group);
 
-                                currentMagicOptionInfo = new MagicOptionInfo
-                                { Id = actualMagicOption.Id, Value = magicOption.Value };
+                                currentMagicOptionInfo = new() { Id = actualMagicOption.Id, Value = magicOption.Value };
                             }
                             else
                                 currentMagicOptionInfo = magicOption;
@@ -187,7 +186,7 @@ namespace RSBot.Alchemy.Views.Settings
                     else
                         item.Checked = false;
 
-                    item.Font = new Font(Font, FontStyle.Bold);
+                    item.Font = new(Font, FontStyle.Bold);
 
                     lvMagicOptions.Items.Add(item);
                 }
@@ -210,10 +209,10 @@ namespace RSBot.Alchemy.Views.Settings
         {
             if (!_reloadConfig) return;
 
-            Globals.Botbase.MagicBundleConfig = new MagicBundleConfig()
+            Globals.Botbase.MagicBundleConfig = new()
             {
                 Item = Globals.View.SelectedItem,
-                MagicStones = new System.Collections.Generic.Dictionary<InventoryItem, RefMagicOpt>()
+                MagicStones = new()
             };
 
             try

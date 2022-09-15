@@ -182,7 +182,7 @@ namespace RSBot.Core.Components
             IsFusing = true;
 
             //An alchemy operation should not take longer than 10s
-            _fusingTimer = new Timer(10_000)
+            _fusingTimer = new(10_000)
             {
                 AutoReset = false,
                 Enabled = false

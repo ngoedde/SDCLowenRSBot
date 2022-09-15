@@ -129,7 +129,7 @@ namespace RSBot.Core.Objects
         /// <returns></returns>
         public static Position FromPacket(Packet packet)
         {
-            return new Position
+            return new()
             {
                 XSector = packet.ReadByte(),
                 YSector = packet.ReadByte(),
@@ -148,7 +148,7 @@ namespace RSBot.Core.Objects
         /// <returns></returns>
         public static Position FromPacketInt(Packet packet)
         {
-            return new Position
+            return new()
             {
                 XSector = packet.ReadByte(),
                 YSector = packet.ReadByte(),
@@ -160,7 +160,7 @@ namespace RSBot.Core.Objects
 
         public static Position FromOffsets(float xOffset, float yOffset, float zOffset, byte xSector, byte ySector)
         {
-            return new Position
+            return new()
             {
                 XSector = xSector,
                 YSector = ySector,

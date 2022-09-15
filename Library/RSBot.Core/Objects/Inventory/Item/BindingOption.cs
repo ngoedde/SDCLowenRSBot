@@ -41,7 +41,7 @@ namespace RSBot.Core.Objects.Item
         /// <returns></returns>
         internal static BindingOption FromPacket(Packet packet, BindingOptionType type)
         {
-            return new BindingOption
+            return new()
             {
                 Type = type,
                 Slot = packet.ReadByte(),

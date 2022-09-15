@@ -12,7 +12,7 @@ namespace RSBot.Default.Bundle.Resurrect
         /// <summary>
         /// The Last resurrect party members
         /// </summary>
-        public Dictionary<string, int> _lastResurrectedPlayers = new Dictionary<string, int>();
+        public Dictionary<string, int> _lastResurrectedPlayers = new();
 
         public void Invoke()
         {

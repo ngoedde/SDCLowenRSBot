@@ -47,7 +47,7 @@ namespace RSBot.General.Components
             {
                 CheckDirectory();
 
-                SavedAccounts = new List<Account>();
+                SavedAccounts = new();
 
                 using (var fileStream = new FileStream(_filePath, FileMode.OpenOrCreate))
                 {
@@ -71,7 +71,7 @@ namespace RSBot.General.Components
 
                             var charCount = reader.ReadInt32();
 
-                            account.Characters = new List<string>(charCount);
+                            account.Characters = new(charCount);
 
                             for (int j = 0; j < charCount; j++)
                                 account.Characters.Add(reader.ReadString());

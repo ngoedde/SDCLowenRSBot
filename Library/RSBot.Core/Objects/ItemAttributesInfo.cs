@@ -259,7 +259,7 @@ namespace RSBot.Core.Objects
             if (item.IsAccessory && slot == 1)
                 return ItemAttributeGroup.MagicalAbsorbRatio;
 
-            throw new Exception($"Unknown attribute type requested! [slot={slot}]");
+            throw new($"Unknown attribute type requested! [slot={slot}]");
 
         }
 

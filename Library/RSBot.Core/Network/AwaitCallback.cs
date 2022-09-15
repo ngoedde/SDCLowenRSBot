@@ -47,7 +47,7 @@ namespace RSBot.Core.Network
         /// <summary>
         /// Lock object.
         /// </summary>
-        private readonly object _lock = new object();
+        private readonly object _lock = new();
         
         /// <summary>
         /// Predicate for received packet

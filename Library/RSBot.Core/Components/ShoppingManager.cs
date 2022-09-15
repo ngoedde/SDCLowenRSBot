@@ -355,11 +355,11 @@ namespace RSBot.Core.Components
             PacketManager.SendPacket(packet, PacketDestination.Server, awaitResult);
             awaitResult.AwaitResponse();
 
-            packet = new Packet(0x7046);
+            packet = new(0x7046);
             packet.WriteUInt(uniqueId);
             packet.WriteUInt(0x04);
 
-            awaitResult = new AwaitCallback(null, 0xB046);
+            awaitResult = new(null, 0xB046);
 
             PacketManager.SendPacket(packet, PacketDestination.Server, awaitResult);
             awaitResult.AwaitResponse();
@@ -416,7 +416,7 @@ namespace RSBot.Core.Components
             mergePacket.WriteUShort(mergeAmount);
             mergePacket.WriteUInt(npc.UniqueId);
 
-            awaitResult = new AwaitCallback(null, 0xB034);
+            awaitResult = new(null, 0xB034);
             PacketManager.SendPacket(mergePacket, PacketDestination.Server, awaitResult);
             awaitResult.AwaitResponse();
         }

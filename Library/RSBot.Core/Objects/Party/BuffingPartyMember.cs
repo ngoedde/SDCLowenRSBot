@@ -45,7 +45,7 @@ namespace RSBot.Core.Objects.Party
         /// <param name="obj"></param>
         public BuffingPartyMember() 
         { 
-            Buffs = new List<uint>(); 
+            Buffs = new(); 
         }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace RSBot.Core.Network.Handler.Agent
                 {
                     case 1:
 
-                        Game.Player.Transport = new Transport
+                        Game.Player.Transport = new()
                         {
                             Id = objectId,
                             UniqueId = uniqueId,
@@ -58,13 +58,13 @@ namespace RSBot.Core.Network.Handler.Agent
                         break;
                     case 2:
 
-                        Game.Player.JobTransport = new JobTransport
+                        Game.Player.JobTransport = new()
                         {
                             Id = objectId,
                             UniqueId = uniqueId,
                             Health = hp,
                             MaxHealth = maxHp,
-                            Inventory = new Objects.InventoryItemCollection(packet),
+                            Inventory = new(packet),
                             OwnerUniqueId = packet.ReadUInt()
                         };
 
@@ -77,7 +77,7 @@ namespace RSBot.Core.Network.Handler.Agent
                         break;
                     case 3:
 
-                        Game.Player.Growth = new Growth
+                        Game.Player.Growth = new()
                         {
                             Id = objectId,
                             UniqueId = uniqueId,
@@ -92,7 +92,7 @@ namespace RSBot.Core.Network.Handler.Agent
                         break;
                     case 4:
 
-                        Game.Player.AbilityPet = new Ability
+                        Game.Player.AbilityPet = new()
                         {
                             Id = objectId,
                             UniqueId = uniqueId,
@@ -107,7 +107,7 @@ namespace RSBot.Core.Network.Handler.Agent
                         break;
                     case 9:
 
-                        Game.Player.Fellow = new Fellow
+                        Game.Player.Fellow = new()
                         {
                             Id = objectId,
                             UniqueId = uniqueId,

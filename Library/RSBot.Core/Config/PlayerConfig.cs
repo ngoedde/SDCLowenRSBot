@@ -25,7 +25,7 @@ namespace RSBot.Core
         /// <param name="file">The config file path</param>
         public static void Load(string charName)
         {
-            _config = new Config(Path.Combine(_configDirectory, charName + ".rs"));
+            _config = new(Path.Combine(_configDirectory, charName + ".rs"));
 
             Log.Notify("[Player] settings have been loaded!");
         }

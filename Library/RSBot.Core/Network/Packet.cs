@@ -120,7 +120,7 @@ namespace RSBot.Core.Network
         {
             lock (rhs._lock)
             {
-                _lock = new object();
+                _lock = new();
 
                 Opcode = rhs.Opcode;
                 Encrypted = rhs.Encrypted;
@@ -129,7 +129,7 @@ namespace RSBot.Core.Network
 
                 if (!Locked)
                 {
-                    _writer = new PacketWriter();
+                    _writer = new();
                     _reader = null;
                     _readerBytes = null;
                     _writer.Write(rhs._writer.GetBytes());
@@ -138,7 +138,7 @@ namespace RSBot.Core.Network
                 {
                     _writer = null;
                     _readerBytes = rhs._readerBytes;
-                    _reader = new PacketReader(_readerBytes);
+                    _reader = new(_readerBytes);
                 }
             }
         }
@@ -153,8 +153,8 @@ namespace RSBot.Core.Network
             Encrypted = false;
             Massive = false;
 
-            _lock = new object();
-            _writer = new PacketWriter();
+            _lock = new();
+            _writer = new();
             _reader = null;
             _readerBytes = null;
         }
@@ -170,8 +170,8 @@ namespace RSBot.Core.Network
             Encrypted = encrypted;
             Massive = false;
 
-            _lock = new object();
-            _writer = new PacketWriter();
+            _lock = new();
+            _writer = new();
             _reader = null;
             _readerBytes = null;
         }
@@ -192,8 +192,8 @@ namespace RSBot.Core.Network
             Encrypted = encrypted;
             Massive = massive;
 
-            _lock = new object();
-            _writer = new PacketWriter();
+            _lock = new();
+            _writer = new();
             _reader = null;
             _readerBytes = null;
         }
@@ -215,8 +215,8 @@ namespace RSBot.Core.Network
             Encrypted = encrypted;
             Massive = massive;
 
-            _lock = new object();
-            _writer = new PacketWriter();
+            _lock = new();
+            _writer = new();
             _writer.Write(bytes);
             _reader = null;
             _readerBytes = null;
@@ -241,8 +241,8 @@ namespace RSBot.Core.Network
             Encrypted = encrypted;
             Massive = massive;
 
-            _lock = new object();
-            _writer = new PacketWriter();
+            _lock = new();
+            _writer = new();
             _writer.Write(bytes, offset, length);
             _reader = null;
             _readerBytes = null;
@@ -258,7 +258,7 @@ namespace RSBot.Core.Network
                 if (Locked) return;
 
                 _readerBytes = _writer.GetBytes();
-                _reader = new PacketReader(_readerBytes);
+                _reader = new(_readerBytes);
                 _writer.Close();
                 _writer = null;
 
@@ -275,7 +275,7 @@ namespace RSBot.Core.Network
             {
                 if (!Locked) return;
 
-                _writer = new PacketWriter();
+                _writer = new();
                 _writer.Write(_readerBytes);
                 _reader.Close();
                 _reader = null;

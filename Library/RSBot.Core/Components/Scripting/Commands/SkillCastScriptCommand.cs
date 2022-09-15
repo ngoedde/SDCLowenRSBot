@@ -10,7 +10,7 @@ namespace RSBot.Core.Components.Scripting.Commands
 
         public bool IsRunning { get; private set; }
 
-        public Dictionary<string, string> Arguments => new Dictionary<string, string>
+        public Dictionary<string, string> Arguments => new()
         {
             {"SkillId", "The Id of the skill to be cast"}
         };

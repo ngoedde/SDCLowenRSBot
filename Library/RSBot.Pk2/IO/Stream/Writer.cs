@@ -14,7 +14,7 @@ namespace RSBot.Pk2.IO.Stream
         /// </summary>
         public Writer()
         {
-            _stream = new MemoryStream();
+            _stream = new();
             OutStream = _stream;
         }
 
@@ -24,7 +24,7 @@ namespace RSBot.Pk2.IO.Stream
         /// <param name="buffer">The buffer.</param>
         public Writer(byte[] buffer)
         {
-            _stream = new MemoryStream(buffer);
+            _stream = new(buffer);
             OutStream = _stream;
         }
 

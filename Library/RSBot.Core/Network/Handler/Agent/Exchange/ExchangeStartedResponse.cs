@@ -15,7 +15,7 @@ namespace RSBot.Core.Network.Handler.Agent.Exchange
         public void Invoke(Packet packet)
         {
             var playerUniqueId = packet.ReadUInt();
-            Game.Player.Exchange = new ExchangeInstance(playerUniqueId);
+            Game.Player.Exchange = new(playerUniqueId);
 
             Log.Notify($"Started exchanging with the player {Game.Player.Exchange.ExchangePlayer.Name}");
 

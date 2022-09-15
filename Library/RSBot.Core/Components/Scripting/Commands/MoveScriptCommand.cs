@@ -30,7 +30,7 @@ namespace RSBot.Core.Components.Scripting.Commands
         /// <value>
         /// The arguments.
         /// </value>
-        public Dictionary<string, string> Arguments => new Dictionary<string, string>
+        public Dictionary<string, string> Arguments => new()
         {
             {"XSector", "The X sector of the region"},
             {"YSector", "The Y sector of the region"},

@@ -35,7 +35,7 @@ namespace RSBot.Core.Plugins
 
             try
             {
-                Bots = new Dictionary<string, IBotbase>();
+                Bots = new();
 
                 foreach (var extension in from file in Directory.GetFiles(DirectoryPath)
                                           let fileInfo = new FileInfo(file)

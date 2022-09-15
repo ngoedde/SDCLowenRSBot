@@ -108,11 +108,11 @@ namespace RSBot.Pk2
             Config = config;
 
             //Create file reader...
-            _fileAdapter = new FileAdapter(path);
+            _fileAdapter = new(path);
             Path = path;
 
             //Read header...
-            Header = new PK2Header(_fileAdapter.ReadData(0, 256));
+            Header = new(_fileAdapter.ReadData(0, 256));
 
             if (Header.Encrypted)
             {
@@ -134,15 +134,15 @@ namespace RSBot.Pk2
             switch (Config.Mode)
             {
                 case PK2Mode.IndexBlocks:
-                    Blocks = new List<PK2Block>();
+                    Blocks = new();
                     ReadBlockAt(256);
                     break;
 
                 case PK2Mode.Index:
-                    _files = new List<PK2File>();
-                    _directories = new List<PK2Directory>();
+                    _files = new();
+                    _directories = new();
 
-                    ReadBlockAt(256, new PK2Directory(_fileAdapter));
+                    ReadBlockAt(256, new(_fileAdapter));
                     break;
             }
 
@@ -188,7 +188,7 @@ namespace RSBot.Pk2
 
                     case PK2EntryType.File:
                         if (Config.Mode == PK2Mode.Index)
-                            _files.Add(new PK2File(_fileAdapter, pk2Entry, currentDirectory));
+                            _files.Add(new(_fileAdapter, pk2Entry, currentDirectory));
                         break;
                 }
             }

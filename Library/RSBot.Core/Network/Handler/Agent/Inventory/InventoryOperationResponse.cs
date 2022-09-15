@@ -329,13 +329,13 @@ namespace RSBot.Core.Network.Handler.Agent.Inventory
             //_ETC_
             if (itemAmount != destinationSlots.Length)
             {
-                inventory.Add(new InventoryItem
+                inventory.Add(new()
                 {
                     Slot = destinationSlots[0],
                     Amount = amount,
                     ItemId = item.ID,
                     Durability = (uint)refShopGoodObj.Data,
-                    Attributes = new ItemAttributesInfo((ulong)refShopGoodObj.Variance),
+                    Attributes = new((ulong)refShopGoodObj.Variance),
                     OptLevel = refShopGoodObj.OptLevel
                 });
 
@@ -345,13 +345,13 @@ namespace RSBot.Core.Network.Handler.Agent.Inventory
             {
                 foreach (var slot in destinationSlots)
                 {
-                    inventory.Add(new InventoryItem
+                    inventory.Add(new()
                     {
                         Slot = slot,
                         Amount = amount,
                         ItemId = item.ID,
                         Durability = (uint)refShopGoodObj.Data,
-                        Attributes = new ItemAttributesInfo((ulong)refShopGoodObj.Variance),
+                        Attributes = new((ulong)refShopGoodObj.Variance),
                         OptLevel = refShopGoodObj.OptLevel
                     });
 
@@ -651,7 +651,7 @@ namespace RSBot.Core.Network.Handler.Agent.Inventory
                         Amount = (ushort)amount,
                         ItemId = itemInfo.ID,
                         Durability = (uint)refShopGoodObj.Data,
-                        Attributes = new ItemAttributesInfo((ulong)refShopGoodObj.Variance),
+                        Attributes = new((ulong)refShopGoodObj.Variance),
                         OptLevel = refShopGoodObj.OptLevel
                     };
 

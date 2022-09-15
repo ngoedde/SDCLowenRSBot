@@ -708,7 +708,7 @@ namespace RSBot.Core.Objects
         /// </summary>
         public bool UseHealthPotion()
         {
-            return UsePotion(new TypeIdFilter(3, 3, 1, 1), ref _lastHpPotionTick, ref _lastHPDuration);
+            return UsePotion(new(3, 3, 1, 1), ref _lastHpPotionTick, ref _lastHPDuration);
         }
 
         /// <summary>
@@ -716,7 +716,7 @@ namespace RSBot.Core.Objects
         /// </summary>
         public bool UseManaPotion()
         {
-            return UsePotion(new TypeIdFilter(3, 3, 1, 2), ref _lastMpPotionTick, ref _lastMPDuration);
+            return UsePotion(new(3, 3, 1, 2), ref _lastMpPotionTick, ref _lastMPDuration);
         }
 
         /// <summary>
@@ -725,7 +725,7 @@ namespace RSBot.Core.Objects
         /// <returns></returns>
         public bool UseVigorPotion()
         {
-            return UsePotion(new TypeIdFilter(3, 3, 1, 3), ref _lastVigorPotionTick, ref _lastVigorDuration);
+            return UsePotion(new(3, 3, 1, 3), ref _lastVigorPotionTick, ref _lastVigorDuration);
         }
 
         /// <summary>
@@ -972,7 +972,7 @@ namespace RSBot.Core.Objects
         public bool TryGetAbilitySkills(out List<SkillInfo> abilitySkills)
         {
             var player = Game.Player;
-            abilitySkills = new List<SkillInfo>();
+            abilitySkills = new();
 
             foreach (var item in player.Inventory.GetEquippedPartItems().Union(player.Avatars))
             {

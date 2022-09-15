@@ -29,7 +29,7 @@ namespace RSBot.Core.Components.Scripting.Commands
         /// <value>
         /// The arguments.
         /// </value>
-        public Dictionary<string, string> Arguments => new Dictionary<string, string>
+        public Dictionary<string, string> Arguments => new()
         {
             {"Codename", "The code name of the NPC"}
         };

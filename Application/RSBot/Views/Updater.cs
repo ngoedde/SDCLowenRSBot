@@ -38,7 +38,7 @@ namespace RSBot.Views
             rtbUpdateInfo.SuspendLayout();
             rtbUpdateInfo.Select(rtbUpdateInfo.TextLength, text.ToString().Length);
             rtbUpdateInfo.SelectionColor = color;
-            rtbUpdateInfo.SelectionFont = new Font(Font.FontFamily, emSize == 0 ? rtbUpdateInfo.Font.Size : emSize, fontStyle);
+            rtbUpdateInfo.SelectionFont = new(Font.FontFamily, emSize == 0 ? rtbUpdateInfo.Font.Size : emSize, fontStyle);
             rtbUpdateInfo.Write(text);
             rtbUpdateInfo.ResumeLayout();
         }
@@ -70,7 +70,7 @@ namespace RSBot.Views
             try
             {
                 downloadProgress.Visible = true;
-                downloadProgress.Location = new Point(16, 40);
+                downloadProgress.Location = new(16, 40);
                 cbChangeLog.Checked = false;
                 centerPanel.Visible = false;
                 lblInfo.Text = "Downloading updates ...";
@@ -79,7 +79,7 @@ namespace RSBot.Views
                 if (!Directory.Exists(tempDirectory))
                     Directory.CreateDirectory(tempDirectory).Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
-                _webClient.DownloadFileAsync(new Uri(_updateUrl + "download/latest.zip"), tempDirectory + "\\latest.zip");
+                _webClient.DownloadFileAsync(new(_updateUrl + "download/latest.zip"), tempDirectory + "\\latest.zip");
                 _webClient.DownloadProgressChanged += _Client_DownloadProgressChanged;
                 _webClient.DownloadFileCompleted += _Client_DownloadFileCompleted;
             }
@@ -112,7 +112,7 @@ namespace RSBot.Views
             return false; // disabled for now.
             try
             {
-                _webClient = new WebClient();
+                _webClient = new();
                 var updateInfo = (await _webClient.DownloadStringTaskAsync(_updateUrl + "/latest.txt")).Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
                 var version = new Version(updateInfo[0]);

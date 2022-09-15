@@ -92,13 +92,13 @@ namespace RSBot.Default.Bundle.PartyBuffing
             _refreshing = true;
 
             // Don't need to use clear, because gc will handle the unnecessary objects
-            BuffingPartyMembers = new List<BuffingPartyMember>();
+            BuffingPartyMembers = new();
 
             var settings = PlayerConfig.Get<string>("RSBot.Party.Buffing", string.Empty);
             var collection = settings.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var item in collection)
-                BuffingPartyMembers.Add(new BuffingPartyMember(item));
+                BuffingPartyMembers.Add(new(item));
 
             _refreshing = false;
         }

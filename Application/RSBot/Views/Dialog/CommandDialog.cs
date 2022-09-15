@@ -44,7 +44,7 @@ namespace RSBot.Views.Dialog
         public CommandDialog(IScriptCommand command)
         {
             _command = command;
-            Arguments = new Dictionary<string, string>(command.Arguments.Count);
+            Arguments = new(command.Arguments.Count);
             InitializeComponent();
             Text = $"Add command: {command.Name}";
 
@@ -55,13 +55,13 @@ namespace RSBot.Views.Dialog
                     Dock = DockStyle.Top,
                     BackColor = ColorScheme.BackColor,
                     ForeColor = ColorScheme.ForeColor,
-                    Size = new Size(250, 85)
+                    Size = new(250, 85)
                 };
 
                 var input = new SDUI.Controls.TextBox
                 {
-                    Location = new Point(16, 26),
-                    Size = new Size(200, 28),
+                    Location = new(16, 26),
+                    Size = new(200, 28),
                     Name = arg.Key
                 };
 
@@ -71,20 +71,20 @@ namespace RSBot.Views.Dialog
                 {
                     new SDUI.Controls.Label
                     {
-                        Location = new Point(13, 2),
+                        Location = new(13, 2),
                         Text = arg.Key,
                         BackColor = Color.Transparent
                     },
                     input,
                     new SDUI.Controls.Label
                     {
-                        Location = new Point(13, 50),
+                        Location = new(13, 50),
                         Text = arg.Value,
-                        Size = new Size(250, 16)
+                        Size = new(250, 16)
                     },
                     new SDUI.Controls.Separator
                     {
-                        Location = new Point(0, 75),
+                        Location = new(0, 75),
                         Dock = DockStyle.Bottom
                     }
                 });
@@ -94,7 +94,7 @@ namespace RSBot.Views.Dialog
 
             var count = command.Arguments.Count == 1 ? 1 : command.Arguments.Count;
 
-            Size = new Size(268, 85 + 85 * count);
+            Size = new(268, 85 + 85 * count);
         }
 
         #endregion Constructor

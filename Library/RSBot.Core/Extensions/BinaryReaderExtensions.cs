@@ -26,7 +26,7 @@ namespace RSBot.Core.Extensions
         /// <returns></returns>
         public static Vector3 ReadVector3(this BinaryReader reader)
         {
-            return new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+            return new(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace RSBot.Core.Extensions
         /// <returns></returns>
         public static Vector2 ReadVector2(this BinaryReader reader)
         {
-            return new Vector2(reader.ReadSingle(), reader.ReadSingle());
+            return new(reader.ReadSingle(), reader.ReadSingle());
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace RSBot.Core.Extensions
             var y1 = reader.ReadSingle();
             var x2 = reader.ReadSingle();
             var y2 = reader.ReadSingle();
-            return new RectangleF(x1, y1, x2 - x1, y2 - y1);
+            return new(x1, y1, x2 - x1, y2 - y1);
         }
     }
 }

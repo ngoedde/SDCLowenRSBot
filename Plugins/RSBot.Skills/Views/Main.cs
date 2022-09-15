@@ -44,7 +44,7 @@ namespace RSBot.Skills.Views
             listSkills.SmallImageList = Core.Extensions.ListViewExtensions.StaticImageList;
             listActiveBuffs.SmallImageList = Core.Extensions.ListViewExtensions.StaticImageList;
 
-            _lock = new object();
+            _lock = new();
         }
 
         /// <summary>

@@ -92,7 +92,7 @@ namespace RSBot.Core.Client.ReferenceObjects
         //public string UI_SkillStudy_Desc;
         //public short AI_AttackChance;
         //public byte AI_SkillType;
-        public List<int> Params = new List<int>(50);
+        public List<int> Params = new(50);
 
         #endregion Fields
 

@@ -45,11 +45,11 @@ namespace RSBot.Party.Bundle.PartyMatching.Objects
         public static PartyList FromPacket(Packet packet)
         {
             if (packet == null || packet.ReadByte() != 1)
-                return new PartyList { Parties = new List<PartyEntry>() };
+                return new() { Parties = new() };
 
             var result = new PartyList
             {
-                Parties = new List<PartyEntry>(),
+                Parties = new(),
                 PageCount = packet.ReadByte(),
                 Page = packet.ReadByte(),
                 PartyCount = packet.ReadByte()

@@ -13,8 +13,8 @@ namespace RSBot.Core.Extensions
         public static string HexDump(this byte[] buffer, int offset, int count)
         {
             const int bytesPerLine = 16;
-            StringBuilder output = new StringBuilder();
-            StringBuilder ascii_output = new StringBuilder();
+            StringBuilder output = new();
+            StringBuilder ascii_output = new();
             int length = count;
             if (length % bytesPerLine != 0)
             {

@@ -77,7 +77,7 @@ namespace RSBot.Core.Cryptography
 
                 var inputByte = inputStream.ReadByte();
                 if (inputByte == -1)
-                    throw new Exception(Message);
+                    throw new(Message);
 
                 outputStream.WriteByte((byte)(inputByte + rollingKey));
 
@@ -96,7 +96,7 @@ namespace RSBot.Core.Cryptography
 
                 var inputByte = inputStream.ReadByte();
                 if (inputByte == -1)
-                    throw new Exception(Message);
+                    throw new(Message);
 
                 outputStream.WriteByte((byte)(inputByte - rollingKey));
 

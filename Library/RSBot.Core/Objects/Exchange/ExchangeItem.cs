@@ -31,7 +31,7 @@ namespace RSBot.Core.Objects.Exchange
         /// <returns></returns>
         public static ExchangeItem FromPacket(Packet packet, bool hasSource = false)
         {
-            return new ExchangeItem
+            return new()
             {
                 SourceSlot = hasSource ? packet.ReadByte() : (byte)0,
                 ExchangeSlot = packet.ReadByte(),

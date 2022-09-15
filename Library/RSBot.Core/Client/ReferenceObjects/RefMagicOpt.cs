@@ -58,7 +58,7 @@ namespace RSBot.Core.Client.ReferenceObjects
         {
             if (parser == null) return false;
 
-            AvailableValues = new List<ushort>(8);
+            AvailableValues = new(8);
             parser.TryParse(0, out Active);
             parser.TryParse(1, out Id);
             parser.TryParse(2, out Group);
@@ -112,7 +112,7 @@ namespace RSBot.Core.Client.ReferenceObjects
             var toValue = (ushort)(value >> 16);
             var fromValue = (ushort)(value & 0xffff);
 
-            return new Tuple<ushort, ushort>(fromValue, toValue);
+            return new(fromValue, toValue);
         }
 
         #endregion Methods

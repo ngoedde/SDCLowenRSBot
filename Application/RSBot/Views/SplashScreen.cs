@@ -21,7 +21,7 @@ namespace RSBot.Views
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            _mainForm = new Main();
+            _mainForm = new();
 
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             labelVersion.Text = $"v{version.Major}.{version.Minor}";

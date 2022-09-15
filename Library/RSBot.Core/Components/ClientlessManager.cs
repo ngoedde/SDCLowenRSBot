@@ -37,7 +37,7 @@ namespace RSBot.Core.Components
             if (!Kernel.Proxy.IsConnectedToGatewayserver)
                 return;
 
-            PacketManager.SendPacket(new Packet(0x6101, true), PacketDestination.Server);
+            PacketManager.SendPacket(new(0x6101, true), PacketDestination.Server);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace RSBot.Core.Components
             {
                 await Task.Delay(10000);
 
-                PacketManager.SendPacket(new Packet(0x2002), PacketDestination.Server);
+                PacketManager.SendPacket(new(0x2002), PacketDestination.Server);
             }
         }
     }

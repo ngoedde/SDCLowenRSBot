@@ -37,7 +37,7 @@ namespace RSBot.Party.Bundle.AutoParty
         /// </summary>
         public void Refresh()
         {
-            Config = new AutoPartyConfig
+            Config = new()
             {
                 PlayerList = PlayerConfig.GetArray<string>("RSBot.Party.AutoPartyList"),
                 InviteAll = PlayerConfig.Get<bool>("RSBot.Party.InviteAll"),
@@ -51,7 +51,7 @@ namespace RSBot.Party.Bundle.AutoParty
                 AcceptIfBotIsStopped = PlayerConfig.Get<bool>("RSBot.Party.AcceptIfBotStopped"),
                 LeaveIfMasterNot = PlayerConfig.Get<bool>("RSBot.Party.LeaveIfMasterNot"),
                 LeaveIfMasterNotName = PlayerConfig.Get<string>("RSBot.Party.LeaveIfMasterNotName"),
-                CenterPosition = new Position
+                CenterPosition = new()
                 {
                     XCoordinate = PlayerConfig.Get<float>("RSBot.Area.X"),
                     YCoordinate = PlayerConfig.Get<float>("RSBot.Area.Y")
@@ -59,7 +59,7 @@ namespace RSBot.Party.Bundle.AutoParty
             };
 
             if (!Game.Party.IsInParty)
-                Game.Party.Settings = new PartySettings(Config.ExperienceAutoShare, Config.ItemAutoShare, Config.AllowInvitations);
+                Game.Party.Settings = new(Config.ExperienceAutoShare, Config.ItemAutoShare, Config.AllowInvitations);
         }
 
         public void OnTick()

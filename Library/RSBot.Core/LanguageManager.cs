@@ -17,7 +17,7 @@ namespace RSBot.Core
         /// <summary>
         /// Parsed language values
         /// </summary>
-        private static Dictionary<string, LangDict> _values = new Dictionary<string, LangDict>();
+        private static Dictionary<string, LangDict> _values = new();
 
         /// <summary>
         /// Get all menu items
@@ -58,7 +58,7 @@ namespace RSBot.Core
                 if (c == '=')
                 {
                     key = builder.ToString().Trim();
-                    builder = new StringBuilder();
+                    builder = new();
                     value = string.Empty;
 
                     if (languages.ContainsKey(key))

@@ -9,7 +9,7 @@ namespace RSBot.Core.Network
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        private static object _lock = new object();
+        private static object _lock = new();
 
         /// <summary>
         /// Gets the handlers.
@@ -26,7 +26,7 @@ namespace RSBot.Core.Network
         /// <summary>
         /// The callbacks
         /// </summary>
-        private static List<AwaitCallback> _callbacks = new List<AwaitCallback>();
+        private static List<AwaitCallback> _callbacks = new();
 
         /// <summary>
         /// Registers the handler.
@@ -35,7 +35,7 @@ namespace RSBot.Core.Network
         public static void RegisterHandler(IPacketHandler handler)
         {
             if (Handlers == null)
-                Handlers = new List<IPacketHandler>();
+                Handlers = new();
 
             Handlers.Add(handler);
         }
@@ -56,7 +56,7 @@ namespace RSBot.Core.Network
         public static void RegisterHook(IPacketHook hook)
         {
             if (Hooks == null)
-                Hooks = new List<IPacketHook>();
+                Hooks = new();
 
             Hooks.Add(hook);
         }

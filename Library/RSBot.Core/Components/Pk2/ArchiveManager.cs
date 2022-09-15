@@ -28,7 +28,7 @@ namespace RSBot.Core.Components.Pk2
         /// <param name="filename">The filename.</param>
         public ArchiveFile GetFile(string filename, bool absolutePath = false)
         {
-            return new ArchiveFile(filename, absolutePath);
+            return new(filename, absolutePath);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace RSBot.Core.Components.Pk2
                 BaseKey = new byte[] { 0x03, 0xF8, 0xE4, 0x44, 0x88, 0x99, 0x3F, 0x64, 0xFE, 0x35 }
             };
 
-            return new ArchiveManager(new PK2Archive(pk2, config));
+            return new(new(pk2, config));
         }
     }
 }

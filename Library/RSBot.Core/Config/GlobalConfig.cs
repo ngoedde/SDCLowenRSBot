@@ -21,7 +21,7 @@ namespace RSBot.Core
         {
             var path = Path.Combine(Environment.CurrentDirectory, "User", ProfileManager.SelectedProfile + ".rs");
 
-            _config = new Config(path);
+            _config = new(path);
 
             Log.Notify("[Global] settings have been loaded!");
         }

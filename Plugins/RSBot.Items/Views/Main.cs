@@ -48,11 +48,11 @@ namespace RSBot.Items.Views
         /// </summary>
         private void LoadGroups()
         {
-            _accessoryTrader = new List<RefShopGroup>();
-            _potionTrader = new List<RefShopGroup>();
-            _protectorTrader = new List<RefShopGroup>();
-            _weaponTrader = new List<RefShopGroup>();
-            _stableKeeper = new List<RefShopGroup>();
+            _accessoryTrader = new();
+            _potionTrader = new();
+            _protectorTrader = new();
+            _weaponTrader = new();
+            _stableKeeper = new();
 
             foreach (var group in Game.ReferenceManager.ShopGroups)
             {
@@ -259,46 +259,46 @@ namespace RSBot.Items.Views
             #region Weapons
 
             if (checkSword.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 2));
+                filters.Add(new(3, 1, 6, 2));
 
             if (checkBlade.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 3));
+                filters.Add(new(3, 1, 6, 3));
 
             if (checkSpear.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 4));
+                filters.Add(new(3, 1, 6, 4));
 
             if (checkGlave.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 5));
+                filters.Add(new(3, 1, 6, 5));
 
             if (checkBow.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 6));
+                filters.Add(new(3, 1, 6, 6));
 
             if (check1HSword.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 7));
+                filters.Add(new(3, 1, 6, 7));
 
             if (check2HSword.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 8));
+                filters.Add(new(3, 1, 6, 8));
 
             if (checkAxe.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 9));
+                filters.Add(new(3, 1, 6, 9));
 
             if (checkWRod.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 10));
+                filters.Add(new(3, 1, 6, 10));
 
             if (checkStaff.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 11));
+                filters.Add(new(3, 1, 6, 11));
 
             if (checkXBow.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 12));
+                filters.Add(new(3, 1, 6, 12));
 
             if (checkDagger.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 13));
+                filters.Add(new(3, 1, 6, 13));
 
             if (checkHarp.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 14));
+                filters.Add(new(3, 1, 6, 14));
 
             if (checkCRod.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 6, 15));
+                filters.Add(new(3, 1, 6, 15));
 
             #endregion Weapons
 
@@ -342,76 +342,76 @@ namespace RSBot.Items.Views
                         continue;
 
                     if (checkHead.Checked)
-                        filters.Add(new TypeIdFilter(3, 1, cloth, 1));
+                        filters.Add(new(3, 1, cloth, 1));
 
                     if (checkShoulder.Checked)
-                        filters.Add(new TypeIdFilter(3, 1, cloth, 2));
+                        filters.Add(new(3, 1, cloth, 2));
 
                     if (checkChest.Checked)
-                        filters.Add(new TypeIdFilter(3, 1, cloth, 3));
+                        filters.Add(new(3, 1, cloth, 3));
 
                     if (checkLegs.Checked)
-                        filters.Add(new TypeIdFilter(3, 1, cloth, 4));
+                        filters.Add(new(3, 1, cloth, 4));
 
                     if (checkHand.Checked)
-                        filters.Add(new TypeIdFilter(3, 1, cloth, 5));
+                        filters.Add(new(3, 1, cloth, 5));
 
                     if (checkBoot.Checked)
-                        filters.Add(new TypeIdFilter(3, 1, cloth, 6));
+                        filters.Add(new(3, 1, cloth, 6));
                 }
             }
 
             #region Accessory
 
             if (checkRing.Checked && checkEuropean.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 12, 3));
+                filters.Add(new(3, 1, 12, 3));
 
             if (checkRing.Checked && checkChinese.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 5, 3));
+                filters.Add(new(3, 1, 5, 3));
 
             if (checkRing.Checked && !checkEuropean.Checked && !checkChinese.Checked)
             {
-                filters.Add(new TypeIdFilter(3, 1, 5, 3));
-                filters.Add(new TypeIdFilter(3, 1, 12, 3));
+                filters.Add(new(3, 1, 5, 3));
+                filters.Add(new(3, 1, 12, 3));
             }
 
             if (checkNecklace.Checked && checkEuropean.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 12, 2));
+                filters.Add(new(3, 1, 12, 2));
 
             if (checkNecklace.Checked && checkChinese.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 5, 2));
+                filters.Add(new(3, 1, 5, 2));
 
             if (checkNecklace.Checked && !checkEuropean.Checked && !checkChinese.Checked)
             {
-                filters.Add(new TypeIdFilter(3, 1, 5, 2));
-                filters.Add(new TypeIdFilter(3, 1, 12, 2));
+                filters.Add(new(3, 1, 5, 2));
+                filters.Add(new(3, 1, 12, 2));
             }
 
             if (checkEarring.Checked && checkEuropean.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 12, 1));
+                filters.Add(new(3, 1, 12, 1));
 
             if (checkEarring.Checked && checkChinese.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 5, 1));
+                filters.Add(new(3, 1, 5, 1));
 
             if (checkEarring.Checked && !checkEuropean.Checked && !checkChinese.Checked)
             {
-                filters.Add(new TypeIdFilter(3, 1, 5, 1));
-                filters.Add(new TypeIdFilter(3, 1, 12, 1));
+                filters.Add(new(3, 1, 5, 1));
+                filters.Add(new(3, 1, 12, 1));
             }
 
             #endregion Accessory
 
             #region Shields
             if (checkShield.Checked && checkChinese.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 4, 1));
+                filters.Add(new(3, 1, 4, 1));
 
             if (checkShield.Checked && checkEuropean.Checked)
-                filters.Add(new TypeIdFilter(3, 1, 4, 2));
+                filters.Add(new(3, 1, 4, 2));
 
             if (checkShield.Checked && !checkEuropean.Checked && !checkChinese.Checked)
             {
-                filters.Add(new TypeIdFilter(3, 1, 4, 1));
-                filters.Add(new TypeIdFilter(3, 1, 4, 2));
+                filters.Add(new(3, 1, 4, 1));
+                filters.Add(new(3, 1, 4, 2));
             }
 
             #endregion
@@ -422,20 +422,20 @@ namespace RSBot.Items.Views
                 filters.AddRange(GetAlchemyFilters());
 
             if (checkQuest.Checked)
-                filters.Add(new TypeIdFilter(p => (p as RefObjItem).IsQuest));
+                filters.Add(new(p => (p as RefObjItem).IsQuest));
 
             if (checkAmmo.Checked)
             {
-                filters.Add(new TypeIdFilter(3, 3, 4, 1));
-                filters.Add(new TypeIdFilter(3, 3, 4, 2));
+                filters.Add(new(3, 3, 4, 1));
+                filters.Add(new(3, 3, 4, 2));
             }
 
             if (checkCoin.Checked)
-                filters.Add(new TypeIdFilter(3, 3, 5, 1));
+                filters.Add(new(3, 3, 5, 1));
 
             if (checkOther.Checked)
             {
-                filters.Add(new TypeIdFilter
+                filters.Add(new()
                 {
                     CompareByTypeID2 = true,
                     TypeID2 = 3
@@ -443,7 +443,7 @@ namespace RSBot.Items.Views
             }
 
             if (filters.Count == 0)
-                filters.Add(new TypeIdFilter { CompareByTypeID1 = true, TypeID1 = 3 });
+                filters.Add(new() { CompareByTypeID1 = true, TypeID1 = 3 });
 
             var gender = ObjectGender.Neutral;
 
@@ -527,10 +527,10 @@ namespace RSBot.Items.Views
             var result = new List<TypeIdFilter>();
 
             for (byte i = 1; i <= 3; i++)
-                result.Add(new TypeIdFilter { TypeID1 = 3, TypeID2 = 3, TypeID3 = 10, TypeID4 = i });
+                result.Add(new() { TypeID1 = 3, TypeID2 = 3, TypeID3 = 10, TypeID4 = i });
 
             for (byte i = 1; i <= 10; i++)
-                result.Add(new TypeIdFilter { TypeID1 = 3, TypeID2 = 3, TypeID3 = 11, TypeID4 = i });
+                result.Add(new() { TypeID1 = 3, TypeID2 = 3, TypeID3 = 11, TypeID4 = i });
 
             return result;
         }

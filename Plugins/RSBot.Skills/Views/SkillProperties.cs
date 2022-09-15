@@ -24,7 +24,7 @@ namespace RSBot.Skills.Views
 
             Skill = skill;
             Text = $"Skill properties - {Skill.GetRealName()} [Id: {Skill.ID}, GroupId: {Skill.GroupID}]";
-            Size = new Size(620, 800);
+            Size = new(620, 800);
 
             try
             {

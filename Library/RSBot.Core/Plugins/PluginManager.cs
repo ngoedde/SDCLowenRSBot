@@ -33,7 +33,7 @@ namespace RSBot.Core.Plugins
         {
             if (Extensions != null) return false;
 
-            Extensions = new Dictionary<string, IPlugin>();
+            Extensions = new();
 
             try
             {

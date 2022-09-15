@@ -47,7 +47,7 @@ namespace RSBot.Core.Objects
         public static Region FromSectors(byte xSector, byte ySector)
         {
             var buffer = new[] { xSector, ySector };
-            return new Region(BitConverter.ToUInt16(buffer, 0));
+            return new(BitConverter.ToUInt16(buffer, 0));
         }
 
         /// <summary>

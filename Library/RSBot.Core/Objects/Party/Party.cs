@@ -110,7 +110,7 @@ namespace RSBot.Core.Objects.Party
         /// </summary>
         public void Leave()
         {
-            PacketManager.SendPacket(new Packet(0x7061), PacketDestination.Server);
+            PacketManager.SendPacket(new(0x7061), PacketDestination.Server);
         }
 
         /// <summary>

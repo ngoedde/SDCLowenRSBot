@@ -13,7 +13,7 @@ namespace RSBot.General
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "General",
@@ -28,9 +28,9 @@ namespace RSBot.General
         /// </summary>
         public void Initialize()
         {
-            Views.View.Instance = new Main();
-            Views.View.PendingWindow = new PendingWindow();
-            Views.View.AccountsWindow = new Accounts();
+            Views.View.Instance = new();
+            Views.View.PendingWindow = new();
+            Views.View.AccountsWindow = new();
         }
 
         /// <summary>

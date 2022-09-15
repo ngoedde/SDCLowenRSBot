@@ -58,7 +58,7 @@ namespace RSBot.Pk2.IO.Stream
         /// <summary>
         /// Represents the lock so the data cannot be damaged while using multiple threads
         /// </summary>
-        private readonly object _lock = new object();
+        private readonly object _lock = new();
 
         /// <summary>Constructor
         /// Initializes the StreamController with a default buffer
@@ -72,17 +72,17 @@ namespace RSBot.Pk2.IO.Stream
             switch (operation)
             {
                 case StreamOperation.Read:
-                    Reader = new Reader(buffer);
+                    Reader = new(buffer);
                     break;
 
                 case StreamOperation.ReadWrite:
-                    Reader = new Reader(buffer);
+                    Reader = new(buffer);
 
-                    Writer = buffer != null ? new Writer(buffer) : new Writer();
+                    Writer = buffer != null ? new(buffer) : new Writer();
                     break;
 
                 case StreamOperation.Write:
-                    Writer = buffer != null ? new Writer(buffer) : new Writer();
+                    Writer = buffer != null ? new(buffer) : new Writer();
                     break;
             }
         }

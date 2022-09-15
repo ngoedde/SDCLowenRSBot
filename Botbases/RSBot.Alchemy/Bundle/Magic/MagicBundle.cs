@@ -148,7 +148,7 @@ namespace RSBot.Alchemy.Bundle.Magic
                     var actualMagicOption = Game.ReferenceManager.GetMagicOption(current.Record.Group,
                         (byte)config.Item.Record.Degree);
 
-                    current = new MagicOptionInfo { Id = actualMagicOption.Id, Value = current.Value };
+                    current = new() { Id = actualMagicOption.Id, Value = current.Value };
                 }
 
                 Log.Debug($"[Alchemy] MaxStat: {current?.Record.GetMaxValue()}");

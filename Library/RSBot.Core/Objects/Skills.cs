@@ -41,8 +41,8 @@ namespace RSBot.Core.Objects
         {
             var result = new Skills
             {
-                KnownSkills = new List<SkillInfo>(),
-                Masteries = new List<MasteryInfo>()
+                KnownSkills = new(),
+                Masteries = new()
             };
 
             packet.ReadByte(); //unknown

@@ -36,7 +36,7 @@ namespace RSBot.Core.Objects.Item
         /// <returns></returns>
         internal static MagicOptionInfo FromPacket(Packet packet)
         {
-            return new MagicOptionInfo
+            return new()
             {
                 Id = packet.ReadUInt(),
                 Value = packet.ReadUInt()

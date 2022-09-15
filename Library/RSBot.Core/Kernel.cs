@@ -63,15 +63,15 @@ namespace RSBot.Core
         /// </summary>
         public static void Initialize()
         {
-            Bot = new Bot();
-            BotbaseManager = new BotbaseManager();
-            PluginManager = new PluginManager();
+            Bot = new();
+            BotbaseManager = new();
+            PluginManager = new();
 
             //Network handlers/hooks
             RegisterNetworkHandlers();
             RegisterNetworkHooks();
 
-            _updaterTokenSource = new CancellationTokenSource();
+            _updaterTokenSource = new();
             
             Task.Factory.StartNew(ComponentUpdaterAsync, _updaterTokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current);
         }

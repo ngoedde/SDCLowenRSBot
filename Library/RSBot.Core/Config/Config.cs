@@ -33,7 +33,7 @@ namespace RSBot.Core
 
             CheckPath();
 
-            _config = new ConcurrentDictionary<string, string>();
+            _config = new();
             foreach (var line in File.ReadAllLines(_path))
             {
                 if (string.IsNullOrWhiteSpace(line))

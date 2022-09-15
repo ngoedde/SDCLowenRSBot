@@ -62,7 +62,7 @@ namespace RSBot.Core.Objects
         /// <param name="size">The size.</param>
         public InventoryItemCollection(byte size)
         {
-            _collection = new List<InventoryItem>(size + 1);
+            _collection = new(size + 1);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace RSBot.Core.Objects
         /// <param name="size">The size.</param>
         public InventoryItemCollection(Packet packet)
         {
-            _collection = new List<InventoryItem>();
+            _collection = new();
             Deserialize(packet);
         }
 

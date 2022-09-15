@@ -20,7 +20,7 @@ namespace RSBot.Statistics.Stats
         /// </summary>
         public static void Initialize()
         {
-            Calculators = new List<IStatisticCalculator>(20);
+            Calculators = new(20);
             LoadCalculators();
         }
 

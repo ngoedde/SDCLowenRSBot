@@ -25,7 +25,7 @@ namespace RSBot.Views.Controls.Cos
             CheckForIllegalCrossThreadCalls = false;
             Visible = false;
 
-            _cachedControls = new Dictionary<string, CosControlBase>();
+            _cachedControls = new();
             SubscribeEvents();
         }
 

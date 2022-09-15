@@ -36,7 +36,7 @@ namespace RSBot.Core.Objects.Skill
         /// <returns></returns>
         internal static MasteryInfo FromPacket(Packet packet)
         {
-            return new MasteryInfo
+            return new()
             {
                 Id = packet.ReadUInt(),
                 Level = packet.ReadByte()

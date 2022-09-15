@@ -43,7 +43,7 @@ namespace RSBot.Core.Network.Handler.Agent.Teleport
             if (!SpawnManager.TryGetEntity<SpawnedBionic>(teleporterUniqueId, out var portal))
                 return;
 
-            Game.Player.Teleportation = new Teleportation
+            Game.Player.Teleportation = new()
             {
                 Destination = Game.ReferenceManager.TeleportData.FirstOrDefault(t => t.ID == destination),
             };

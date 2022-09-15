@@ -8,22 +8,22 @@ namespace RSBot.Core.Extensions
     {
         public static Vector2 ToVector2(this Vector3 v)
         {
-            return new Vector2(v.X, v.Z);
+            return new(v.X, v.Z);
         }
 
         public static Vector3 ToVector3(this Vector2 v)
         {
-            return new Vector3(v.X, 0f, v.Y); //TO DO: navmesh height for y position
+            return new(v.X, 0f, v.Y); //TO DO: navmesh height for y position
         }
 
         public static Vector3 ToVector3(this Vector2 v, float y)
         {
-            return new Vector3(v.X, y, v.Y);
+            return new(v.X, y, v.Y);
         }
 
         public static Vector2 Perpendicular(this Vector2 v)
         {
-            return new Vector2(-v.Y, v.X);
+            return new(-v.Y, v.X);
         }
 
         public static Vector2 Rotated(this Vector2 v, float angle)
@@ -31,7 +31,7 @@ namespace RSBot.Core.Extensions
             var c = Math.Cos(angle);
             var s = Math.Sin(angle);
 
-            return new Vector2((float)(v.X * c - v.Y * s), (float)(v.Y * c + v.X * s));
+            return new((float)(v.X * c - v.Y * s), (float)(v.Y * c + v.X * s));
         }
 
         public static float CrossProduct(this Vector2 self, Vector2 other)
@@ -103,7 +103,7 @@ namespace RSBot.Core.Extensions
             var x = cos * (rotated.X - around.X) - sin * (rotated.Y - around.Y) + around.X;
             var y = sin * (rotated.X - around.X) + cos * (rotated.Y - around.Y) + around.Y;
 
-            return new Vector2((float)x, (float)y);
+            return new((float)x, (float)y);
         }
 
         public static float Distance(this Vector2 from, Vector2 to, bool squared = false)
@@ -143,7 +143,7 @@ namespace RSBot.Core.Extensions
         /// <returns></returns>
         public static Point ToPoint(this Vector2 vector)
         {
-            return new Point
+            return new()
             {
                 X = Convert.ToInt32(vector.X),
                 Y = Convert.ToInt32(vector.Y)

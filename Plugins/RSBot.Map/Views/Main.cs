@@ -163,7 +163,7 @@ namespace RSBot.Map.Views
                 if (!string.IsNullOrEmpty(label))
                     gfx.DrawString(label, Font, brush, x + size.Width, y - size.Width / 2);
 
-                gfx.FillRectangle(brush, new RectangleF(new PointF(x, y), size));
+                gfx.FillRectangle(brush, new RectangleF(new(x, y), size));
             }
             catch { }
         }
@@ -200,8 +200,8 @@ namespace RSBot.Map.Views
                 var diameterF = diameter * _scale;
                 var point = new PointF(x - diameterF / 2, y - diameterF / 2);
 
-                gfx.FillEllipse(semiTransBrush, new RectangleF(point, new SizeF(diameterF, diameterF)));
-                gfx.DrawEllipse(new Pen(color), new RectangleF(point, new SizeF(diameterF, diameterF)));
+                gfx.FillEllipse(semiTransBrush, new RectangleF(point, new(diameterF, diameterF)));
+                gfx.DrawEllipse(new(color), new RectangleF(point, new(diameterF, diameterF)));
             }
             catch { }
         }
@@ -388,7 +388,7 @@ namespace RSBot.Map.Views
 #if DEBUG
                         var pen = new Pen(Color.Black);
                         pen.DashStyle = DashStyle.Dot;
-                        gfx.DrawRectangle(pen, new Rectangle(pos, new Size(SectorSize, SectorSize)));
+                        gfx.DrawRectangle(pen, new(pos, new(SectorSize, SectorSize)));
 #endif
                         bitmap.Dispose();
                     }
@@ -402,7 +402,7 @@ namespace RSBot.Map.Views
 
             using (var matrix = new Matrix())
             {
-                matrix.RotateAt(angle, new PointF(sizedBitmap.Width / 2, sizedBitmap.Height / 2));
+                matrix.RotateAt(angle, new(sizedBitmap.Width / 2, sizedBitmap.Height / 2));
 
                 sizedBitmap.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
@@ -491,7 +491,7 @@ namespace RSBot.Map.Views
             var mapX = (Game.Player.Movement.Source.XCoordinate + (((mapCanvas.Width / 2f - e.X) / SectorSize) * 192f * -1f));
             var mapY = (Game.Player.Movement.Source.YCoordinate + (((mapCanvas.Height / 2f - e.Y) / SectorSize) * 192f));
 
-            Game.Player.MoveTo(new Position
+            Game.Player.MoveTo(new()
             {
                 XCoordinate = mapX,
                 YCoordinate = mapY

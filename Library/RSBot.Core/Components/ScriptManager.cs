@@ -65,7 +65,7 @@ namespace RSBot.Core.Components
 
         public static void Initialize()
         {
-            CommandHandlers = new List<IScriptCommand>(10);
+            CommandHandlers = new(10);
 
             var type = typeof(IScriptCommand);
             var types = AppDomain.CurrentDomain.GetAssemblies()

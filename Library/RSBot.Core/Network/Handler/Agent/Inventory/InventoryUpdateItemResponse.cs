@@ -43,7 +43,7 @@ namespace RSBot.Core.Network.Handler.Agent.Inventory
                 item.OptLevel = packet.ReadByte();
 
             if (itemUpdateFlag.HasFlag(ItemUpdateFlag.Variance))
-                item.Attributes = new ItemAttributesInfo(packet.ReadULong());
+                item.Attributes = new(packet.ReadULong());
 
             if (itemUpdateFlag.HasFlag(ItemUpdateFlag.Quanity))
                 item.Amount = packet.ReadUShort();
@@ -56,7 +56,7 @@ namespace RSBot.Core.Network.Handler.Agent.Inventory
 
             if (itemUpdateFlag.HasFlag(ItemUpdateFlag.MagParams))
             {
-                item.MagicOptions = new List<MagicOptionInfo>();
+                item.MagicOptions = new();
 
                 var magParamCount = packet.ReadByte();
 

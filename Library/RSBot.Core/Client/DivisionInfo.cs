@@ -41,7 +41,7 @@ namespace RSBot.Core.Client
         {
             var result = new DivisionInfo
             {
-                Divisions = new List<Division>(),
+                Divisions = new(),
                 Locale = 0
             };
 
@@ -70,7 +70,7 @@ namespace RSBot.Core.Client
                         var division = new Division
                         {
                             Name = reader.ReadJoymaxString(),
-                            GatewayServers = new List<string>()
+                            GatewayServers = new()
                         };
                         reader.ReadByte(); //Null terminator for CharacterName
 

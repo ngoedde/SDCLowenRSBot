@@ -40,7 +40,7 @@ namespace RSBot.Core.Network.SecurityAPI
 
         private static SecurityFlags CopySecurityFlags(SecurityFlags flags)
         {
-            SecurityFlags copy = new SecurityFlags();
+            SecurityFlags copy = new();
             copy.none = flags.none;
             copy.blowfish = flags.blowfish;
             copy.security_bytes = flags.security_bytes;
@@ -61,7 +61,7 @@ namespace RSBot.Core.Network.SecurityAPI
         // Returns a SecurityFlags object from a byte.
         private static SecurityFlags ToSecurityFlags(byte value)
         {
-            SecurityFlags flags = new SecurityFlags();
+            SecurityFlags flags = new();
             flags.none = (byte)(value & 1);
             value >>= 1;
             flags.blowfish = (byte)(value & 1);
@@ -157,9 +157,9 @@ namespace RSBot.Core.Network.SecurityAPI
                 0x37, 0xBE, 0xCB, 0xB4, 0xA1, 0x8E, 0xCC, 0xC3, 0x1B, 0xDF, 0x0D, 0x5A, 0x8D, 0xED, 0x02, 0x2D,
             };
 
-            using (MemoryStream in_memory_stream = new MemoryStream(base_security_table, false))
+            using (MemoryStream in_memory_stream = new(base_security_table, false))
             {
-                using (BinaryReader reader = new BinaryReader(in_memory_stream))
+                using (BinaryReader reader = new(in_memory_stream))
                 {
                     int index = 0;
                     for (int edi = 0; edi < 1024; edi += 4)
@@ -245,7 +245,7 @@ namespace RSBot.Core.Network.SecurityAPI
 
         #region Random
 
-        private static Random random = new Random();
+        private static Random random = new();
 
         private static UInt64 NextUInt64()
         {
@@ -420,7 +420,7 @@ namespace RSBot.Core.Network.SecurityAPI
             m_security_flags = flags;
             m_client_security = true;
 
-            Packet response = new Packet(0x5000);
+            Packet response = new(0x5000);
 
             response.WriteByte(m_security_flag);
 
@@ -558,11 +558,11 @@ namespace RSBot.Core.Network.SecurityAPI
                 KeyTransformValue(ref m_handshake_blowfish_key, m_value_K, 0x3);
                 m_blowfish.Initialize(BitConverter.GetBytes(m_handshake_blowfish_key));
 
-                SecurityFlags tmp_flags = new SecurityFlags();
+                SecurityFlags tmp_flags = new();
                 tmp_flags.handshake_response = 1;
                 byte tmp_flag = FromSecurityFlags(tmp_flags);
 
-                Packet response = new Packet(0x5000);
+                Packet response = new(0x5000);
                 response.WriteByte(tmp_flag);
                 response.WriteULong(m_challenge_key);
                 m_outgoing_packets.Add(response);
@@ -647,7 +647,7 @@ namespace RSBot.Core.Network.SecurityAPI
                     }
 
                     // Handshake challenge
-                    Packet response = new Packet(0x5000);
+                    Packet response = new(0x5000);
                     response.WriteUInt(m_value_B);
                     response.WriteULong(m_client_key);
                     m_outgoing_packets.Insert(0, response);
@@ -664,10 +664,10 @@ namespace RSBot.Core.Network.SecurityAPI
                     }
 
                     // Handshake accepted
-                    Packet response1 = new Packet(0x9000);
+                    Packet response1 = new(0x9000);
 
                     // Identify
-                    Packet response2 = new Packet(0x2001, true, false);
+                    Packet response2 = new(0x2001, true, false);
                     response2.WriteString(m_identity_name);
                     response2.WriteByte(m_identity_flag);
 
@@ -693,7 +693,7 @@ namespace RSBot.Core.Network.SecurityAPI
             ushort data_length = (ushort)data.Length;
 
             // Add the packet header to the start of the data
-            PacketWriter writer = new PacketWriter();
+            PacketWriter writer = new();
             writer.Write(data_length); // packet size
             writer.Write(opcode); // packet opcode
             writer.Write((ushort)0); // packet security bytes
@@ -802,17 +802,17 @@ namespace RSBot.Core.Network.SecurityAPI
             {
                 ushort parts = 0;
 
-                PacketWriter final = new PacketWriter();
-                PacketWriter final_data = new PacketWriter();
+                PacketWriter final = new();
+                PacketWriter final_data = new();
 
                 byte[] input_data = packet.GetBytes();
-                PacketReader input_reader = new PacketReader(input_data);
+                PacketReader input_reader = new(input_data);
 
-                TransferBuffer workspace = new TransferBuffer(4089, 0, (int)input_data.Length);
+                TransferBuffer workspace = new(4089, 0, (int)input_data.Length);
 
                 while (workspace.Size > 0)
                 {
-                    PacketWriter part_data = new PacketWriter();
+                    PacketWriter part_data = new();
 
                     int cur_size = workspace.Size > 4089 ? 4089 : workspace.Size; // Max buffer size is 4kb for the client
 
@@ -829,7 +829,7 @@ namespace RSBot.Core.Network.SecurityAPI
                 }
 
                 // Write the final header packet to the front of the packet
-                PacketWriter final_header = new PacketWriter();
+                PacketWriter final_header = new();
                 final_header.Write((byte)1); // Header flag
                 final_header.Write((short)parts);
                 final_header.Write(packet.Opcode);
@@ -884,16 +884,16 @@ namespace RSBot.Core.Network.SecurityAPI
 
             m_client_security = false;
             m_security_flag = 0;
-            m_security_flags = new SecurityFlags();
+            m_security_flags = new();
             m_accepted_handshake = false;
             m_started_handshake = false;
             m_identity_flag = 0;
             m_identity_name = "SR_Client";
 
-            m_outgoing_packets = new List<Packet>();
-            m_incoming_packets = new List<Packet>();
+            m_outgoing_packets = new();
+            m_incoming_packets = new();
 
-            m_enc_opcodes = new List<ushort>();
+            m_enc_opcodes = new();
             m_enc_opcodes.Add(0x2001);
             m_enc_opcodes.Add(0x6100);
             m_enc_opcodes.Add(0x6101);
@@ -902,15 +902,15 @@ namespace RSBot.Core.Network.SecurityAPI
             m_enc_opcodes.Add(0x6107);
             m_enc_opcodes.Add(0x704C);
 
-            m_blowfish = new Blowfish();
+            m_blowfish = new();
 
-            m_recv_buffer = new TransferBuffer(8192); // must be at minimal 2 bytes!
+            m_recv_buffer = new(8192); // must be at minimal 2 bytes!
             m_current_buffer = null;
 
             m_massive_count = 0;
             m_massive_packet = null;
 
-            _lock = new object();
+            _lock = new();
         }
 
         // Changes the 0x2001 identify packet data that will be sent out by
@@ -930,7 +930,7 @@ namespace RSBot.Core.Network.SecurityAPI
         {
             lock (_lock)
             {
-                SecurityFlags flags = new SecurityFlags();
+                SecurityFlags flags = new();
                 if (blowfish)
                 {
                     flags.none = 0;
@@ -986,14 +986,14 @@ namespace RSBot.Core.Network.SecurityAPI
         // obtain a list of ready to process packets.
         public void Recv(byte[] buffer, int offset, int length)
         {
-            Recv(new TransferBuffer(buffer, offset, length, true));
+            Recv(new(buffer, offset, length, true));
         }
 
         // Transfers raw incoming data into the security object. CallHandler TransferIncoming to
         // obtain a list of ready to process packets.
         public void Recv(TransferBuffer raw_buffer)
         {
-            List<TransferBuffer> incoming_buffers_tmp = new List<TransferBuffer>();
+            List<TransferBuffer> incoming_buffers_tmp = new();
             lock (_lock)
             {
                 int length = raw_buffer.Size - raw_buffer.Offset;
@@ -1051,7 +1051,7 @@ namespace RSBot.Core.Network.SecurityAPI
                             }
 
                             // Allocate the final buffer the packet will be written to
-                            m_current_buffer = new TransferBuffer(packet_size, 0, packet_size);
+                            m_current_buffer = new(packet_size, 0, packet_size);
                         }
 
                         // Calculate how many bytes are left to receive in the packet.
@@ -1127,7 +1127,7 @@ namespace RSBot.Core.Network.SecurityAPI
                             buffer.Buffer = new_buffer;
                         }
 
-                        PacketReader packet_data = new PacketReader(buffer.Buffer);
+                        PacketReader packet_data = new(buffer.Buffer);
                         packet_size = packet_data.ReadUInt16();
                         ushort packet_opcode = packet_data.ReadUInt16();
                         byte packet_security_count = packet_data.ReadByte();
@@ -1182,7 +1182,7 @@ namespace RSBot.Core.Network.SecurityAPI
                             // They do not need to actually do anything with them. This was added to
                             // help debugging and make output logs complete.
 
-                            Packet packet = new Packet(packet_opcode, packet_encrypted, false, buffer.Buffer, 6, packet_size);
+                            Packet packet = new(packet_opcode, packet_encrypted, false, buffer.Buffer, 6, packet_size);
                             packet.Lock();
                             m_incoming_packets.Add(packet);
                         }
@@ -1203,7 +1203,7 @@ namespace RSBot.Core.Network.SecurityAPI
                                 {
                                     m_massive_count = packet_data.ReadUInt16();
                                     ushort contained_packet_opcode = packet_data.ReadUInt16();
-                                    m_massive_packet = new Packet(contained_packet_opcode, packet_encrypted, true);
+                                    m_massive_packet = new(contained_packet_opcode, packet_encrypted, true);
                                 }
                                 else
                                 {
@@ -1223,7 +1223,7 @@ namespace RSBot.Core.Network.SecurityAPI
                             }
                             else
                             {
-                                Packet packet = new Packet(packet_opcode, packet_encrypted, false, buffer.Buffer, 6, packet_size);
+                                Packet packet = new(packet_opcode, packet_encrypted, false, buffer.Buffer, 6, packet_size);
                                 packet.Lock();
                                 m_incoming_packets.Add(packet);
                             }
@@ -1255,7 +1255,7 @@ namespace RSBot.Core.Network.SecurityAPI
                 if (m_incoming_packets.Count > 0)
                 {
                     packets = m_incoming_packets;
-                    m_incoming_packets = new List<Packet>();
+                    m_incoming_packets = new();
                 }
             }
             return packets;

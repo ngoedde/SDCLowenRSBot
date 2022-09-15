@@ -14,7 +14,7 @@ namespace RSBot.Party
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Party",
@@ -28,8 +28,8 @@ namespace RSBot.Party
         /// </summary>
         public void Initialize()
         {
-            Views.View.Instance = new Main();
-            Views.View.PartyWindow = new AutoFormParty();
+            Views.View.Instance = new();
+            Views.View.PartyWindow = new();
 
             PartySubscriber.SubscribeEvents();
         }

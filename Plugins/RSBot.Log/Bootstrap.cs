@@ -18,7 +18,7 @@ namespace RSBot.Log
         /// <value>
         /// The information.
         /// </value>
-        public PluginInfo Information => new PluginInfo
+        public PluginInfo Information => new()
         {
             DisplayAsTab = true,
             DisplayName = "Log",
@@ -33,7 +33,7 @@ namespace RSBot.Log
         /// </summary>
         public void Initialize()
         {
-            _control = new Views.Main();
+            _control = new();
         }
 
         /// <summary>

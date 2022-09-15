@@ -41,7 +41,7 @@ namespace RSBot.General.PacketHandler
             if (Game.Clientless) 
                 return packet;
 
-            packet = new Packet(Opcode, packet.Encrypted);
+            packet = new(Opcode, packet.Encrypted);
             packet.WriteUInt(Kernel.Proxy.Token);
             packet.WriteString(selectedAccount.Username);
             packet.WriteString(selectedAccount.Password);

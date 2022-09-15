@@ -190,7 +190,7 @@ namespace RSBot.Alchemy.Views.Settings
             if (Globals.Botbase == null || Globals.Botbase.AlchemyEngine != AlchemyEngine.Enhance)
                 return;
 
-            Globals.Botbase.EnhanceBundleConfig = new EnhanceBundleConfig
+            Globals.Botbase.EnhanceBundleConfig = new()
             {
                 Item = Globals.View.SelectedItem,
                 UseAstralStones = checkUseAstralStones.Checked,

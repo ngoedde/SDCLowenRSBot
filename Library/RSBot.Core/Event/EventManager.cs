@@ -8,7 +8,7 @@ namespace RSBot.Core.Event
 {
     public class EventManager
     {
-        private static readonly List<(string name, Delegate handler)> _listeners = new List<(string, Delegate)>();
+        private static readonly List<(string name, Delegate handler)> _listeners = new();
 
         /// <summary>
         /// Registers the event.
