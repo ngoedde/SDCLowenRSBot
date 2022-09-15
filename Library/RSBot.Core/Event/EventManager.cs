@@ -52,6 +52,9 @@ namespace RSBot.Core.Event
                         Task.Run(() => target.DynamicInvoke(parameters));
                     else
                         target.DynamicInvoke(parameters);
+
+                if (name != "OnInvokeEvent")
+                    EventManager.FireEvent("OnInvokeEvent", name);
             }
             catch (Exception e)
             {

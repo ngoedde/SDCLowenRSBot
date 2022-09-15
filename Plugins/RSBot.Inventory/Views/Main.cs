@@ -9,6 +9,8 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using RSBot.Core.Components;
+using RSBot.Core.Components.Condition.Item;
 
 namespace RSBot.Inventory.Views
 {
@@ -498,6 +500,22 @@ namespace RSBot.Inventory.Views
             packet.WriteByte(inventoryItem.Slot);
             packet.WriteByte(freeSlot);
             PacketManager.SendPacket(packet, PacketDestination.Server);
+        }
+
+        private void afterTrainingPlaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var listViewItem = listViewMain.SelectedItems[0];
+            if (listViewItem.Tag is not InventoryItem inventoryItem)
+                return;
+
+            var condition = new ItemCondition
+            {
+                EventName = "OnFinishScript",
+                ItemCodeName = inventoryItem.Record.CodeName,
+                Repeat = repeatAfterFinishToolStripMenuItem.Checked,
+            };
+
+            ConditionManager.RegisterItemCondition(condition);
         }
     }
 }

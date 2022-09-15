@@ -48,7 +48,7 @@ namespace RSBot.Core.Client.ReferenceObjects
         }
 
 
-        //public int DecayTime; //time in milliseconds until object despawns
+        public int DecayTime; //time in milliseconds until object despawns / cooldown time
         public ObjectCountry Country; //Indicates where object is from
 
         public ObjectRarity Rarity;
@@ -137,8 +137,7 @@ namespace RSBot.Core.Client.ReferenceObjects
             parser.TryParse(10, out TypeID2);
             parser.TryParse(11, out TypeID3);
             parser.TryParse(12, out TypeID4);
-
-            //DecayTime = int.Parse(data[13]);
+            parser.TryParse(13, out DecayTime);
             parser.TryParse(14, out Country);
             parser.TryParse(15, out Rarity);
 

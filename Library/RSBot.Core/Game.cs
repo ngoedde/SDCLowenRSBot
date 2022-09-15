@@ -162,6 +162,7 @@ namespace RSBot.Core
             CollisionManager.Initialize();
             ClientlessManager.Initialize();
             ScriptManager.Initialize();
+            ConditionManager.Initialize();
         }
     }
 }
