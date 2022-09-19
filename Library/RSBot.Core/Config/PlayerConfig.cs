@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 
 namespace RSBot.Core
 {
@@ -28,6 +29,8 @@ namespace RSBot.Core
             _config = new Config(Path.Combine(_configDirectory, charName + ".rs"));
 
             Log.Notify("[Player] settings have been loaded!");
+
+            EventManager.FireEvent("OnLoadPlayerConfig");
         }
 
         /// <summary>
@@ -54,6 +57,39 @@ namespace RSBot.Core
                 return defaultValue;
 
             return _config.Get(key, defaultValue);
+        }
+
+        /// <summary>Gets an object from the configuration.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">The key.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        public static T GetObject<T>(string key, T defaultValue = default(T))
+        {
+            if (_config == null)
+                return defaultValue;
+            
+            var base64Data = _config.Get(key, string.Empty);
+
+            if (string.IsNullOrEmpty(base64Data))
+                return defaultValue;
+
+            var jsonData = Convert.FromBase64String(base64Data);
+
+            return JsonSerializer.Deserialize<T>(jsonData);
+        }
+
+        /// <summary>Sets the object.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public static void SetObject<T>(string key, T value)
+        {
+            var jsonData = Convert.ToBase64String(JsonSerializer.SerializeToUtf8Bytes(value));
+            
+            _config.Set(key, jsonData);
         }
 
         /// <summary>

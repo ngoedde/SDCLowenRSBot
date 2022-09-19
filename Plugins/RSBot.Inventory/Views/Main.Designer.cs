@@ -58,6 +58,7 @@
             this.buttonJobTransport = new SDUI.Controls.Button();
             this.buttonStorage = new SDUI.Controls.Button();
             this.buttonJobEquipment = new SDUI.Controls.Button();
+            this.afterTeleportationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.topPanel.SuspendLayout();
@@ -177,6 +178,7 @@
             this.conditionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.afterTrainingPlaceToolStripMenuItem,
             this.beforeTrainingPlaceToolStripMenuItem,
+            this.afterTeleportationToolStripMenuItem,
             this.repeatAfterFinishToolStripMenuItem});
             this.conditionsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.conditionsToolStripMenuItem.Name = "conditionsToolStripMenuItem";
@@ -187,25 +189,25 @@
             // 
             this.afterTrainingPlaceToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.afterTrainingPlaceToolStripMenuItem.Name = "afterTrainingPlaceToolStripMenuItem";
-            this.afterTrainingPlaceToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.afterTrainingPlaceToolStripMenuItem.Text = "After Training Place";
+            this.afterTrainingPlaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.afterTrainingPlaceToolStripMenuItem.Text = "At training place";
             this.afterTrainingPlaceToolStripMenuItem.Click += new System.EventHandler(this.afterTrainingPlaceToolStripMenuItem_Click);
             // 
             // beforeTrainingPlaceToolStripMenuItem
             // 
-            this.beforeTrainingPlaceToolStripMenuItem.Enabled = false;
             this.beforeTrainingPlaceToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.beforeTrainingPlaceToolStripMenuItem.Name = "beforeTrainingPlaceToolStripMenuItem";
-            this.beforeTrainingPlaceToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.beforeTrainingPlaceToolStripMenuItem.Text = "Before Training Place";
+            this.beforeTrainingPlaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.beforeTrainingPlaceToolStripMenuItem.Text = "To training place";
+            this.beforeTrainingPlaceToolStripMenuItem.Click += new System.EventHandler(this.beforeTrainingPlaceToolStripMenuItem_Click);
             // 
             // repeatAfterFinishToolStripMenuItem
             // 
-            this.repeatAfterFinishToolStripMenuItem.Enabled = false;
             this.repeatAfterFinishToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.repeatAfterFinishToolStripMenuItem.Name = "repeatAfterFinishToolStripMenuItem";
-            this.repeatAfterFinishToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.repeatAfterFinishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.repeatAfterFinishToolStripMenuItem.Text = "Repeat after finish";
+            this.repeatAfterFinishToolStripMenuItem.Click += new System.EventHandler(this.repeatAfterFinishToolStripMenuItem_Click);
             // 
             // moveToLastDeathPositionToolStripMenuItem
             // 
@@ -410,6 +412,14 @@
             this.buttonJobEquipment.UseVisualStyleBackColor = true;
             this.buttonJobEquipment.Click += new System.EventHandler(this.ButtonSwitcher);
             // 
+            // afterTeleportationToolStripMenuItem
+            // 
+            this.afterTeleportationToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.afterTeleportationToolStripMenuItem.Name = "afterTeleportationToolStripMenuItem";
+            this.afterTeleportationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.afterTeleportationToolStripMenuItem.Text = "After teleportation";
+            this.afterTeleportationToolStripMenuItem.Click += new System.EventHandler(this.afterTeleportationToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -460,5 +470,6 @@
         private System.Windows.Forms.ToolStripMenuItem moveToPetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveToPlayerToolStripMenuItem;
         private SDUI.Controls.Button buttonFellowPet;
+        private System.Windows.Forms.ToolStripMenuItem afterTeleportationToolStripMenuItem;
     }
 }

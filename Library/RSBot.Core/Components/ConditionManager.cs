@@ -10,13 +10,82 @@ namespace RSBot.Core.Components
     {
         public static List<IItemConditionAction> ItemActions { get; private set; }
 
-        public static List<ItemCondition> ItemConditions { get; set; }
+        public static List<ItemCondition> ItemConditions { get; private set; }
 
         public static void Initialize()
         {
-            ItemConditions = new List<ItemCondition>();
-         
             RegisterItemConditionActions();
+
+            EventManager.SubscribeEvent("OnInvokeEvent", OnInvokeEvent);
+            EventManager.SubscribeEvent("OnLoadPlayerConfig", LoadConditions);
+        }
+        
+        public static void LoadConditions()
+        {
+            try
+            {
+                ItemConditions = PlayerConfig.GetObject("RSBot.ItemConditions", new List<ItemCondition>());
+
+                //Todo: Remove
+                ItemConditions.Add(new ItemCondition
+                {
+                    EventName = "OnPlayerMove",
+                    ItemCodeName = "ITEM_ETC_HP_POTION_05",
+                    Repeat = true
+                });
+            }
+            catch (Exception ex)
+            {
+                ItemConditions = new List<ItemCondition>();
+
+                Log.Warn($"Item conditions loading failed: {ex.Message}");
+            }
+        }
+
+        public static void SaveConditions()
+        {
+            PlayerConfig.SetObject("RSBot.ItemConditions", ItemConditions);
+        }
+        
+        public static IEnumerable<ItemCondition> GetItemConditions(string itemCodeName)
+        {
+            return ItemConditions?.Where(x => x != null && x.ItemCodeName == itemCodeName);
+        }
+
+        public static void RemoveItemCondition(string itemCodeName, string eventName)
+        {
+            var elementToRemove =
+                ItemConditions.FirstOrDefault(i => i.EventName == eventName && i.ItemCodeName == itemCodeName);
+
+            if (elementToRemove != null)
+                ItemConditions.Remove(elementToRemove);
+        }
+
+        public static void AddItemCondition(ItemCondition condition)
+        {
+            var existing = ItemConditions.FirstOrDefault(c =>
+                c.EventName == condition.EventName && c.ItemCodeName == condition.ItemCodeName);
+
+            if (existing == null)
+                ItemConditions.Add(condition);
+        }
+        
+        private static void OnInvokeEvent(string eventName)
+        {
+            var actionTrigger = ItemActions.FirstOrDefault(a => a.EventName == eventName);
+
+            if (eventName == "OnPlayerMove")
+            {
+
+            }
+
+            if (actionTrigger == null)
+                return;
+
+            var conditions = ItemConditions.Where(c => c.EventName == eventName);
+
+            foreach (var condition in conditions)
+                actionTrigger.Invoke(condition, Game.Player.Inventory.GetItem(condition.ItemCodeName));
         }
 
         private static void RegisterItemConditionActions()
@@ -26,7 +95,7 @@ namespace RSBot.Core.Components
             var type = typeof(IItemConditionAction);
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
-                .Where(p => type.IsAssignableFrom(p) && !p.IsInterface).ToArray();
+                .Where(p => type.IsAssignableFrom(p) && !p.IsAbstract && !p.IsInterface).ToArray();
 
             foreach (var handler in types)
             {
@@ -34,33 +103,6 @@ namespace RSBot.Core.Components
 
                 ItemActions.Add(instance);
             }
-        }
-
-        private static void EventProxy(IItemConditionAction action, ItemCondition condition)
-        {
-            var inventoryItem = Game.Player.Inventory.GetItem(condition.ItemCodeName);
-
-            action.Invoke(condition, inventoryItem);
-        }
-
-        public static void RegisterItemCondition(ItemCondition condition)
-        {
-            ItemConditions.Add(condition);
-
-            EventManager.SubscribeEvent("OnInvokeEvent", OnInvokeEvent);
-        }
-
-        private static void OnInvokeEvent(string eventName)
-        {
-            var actionTrigger = ItemActions.FirstOrDefault(a => a.EventName == eventName);
-
-            if (actionTrigger == null)
-                return;
-
-            var conditions = ItemConditions.Where(c => c.EventName == eventName);
-
-            foreach (var condition in conditions)
-                actionTrigger.Invoke(condition, Game.Player.Inventory.GetItem(condition.ItemCodeName));
         }
     }
 }

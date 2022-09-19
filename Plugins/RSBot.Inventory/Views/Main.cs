@@ -294,8 +294,7 @@ namespace RSBot.Inventory.Views
             if (listViewMain.SelectedIndices.Count != 1)
                 return;
 
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
+            var inventoryItem = GetSelectedItem();
             inventoryItem?.Use();
         }
 
@@ -313,8 +312,11 @@ namespace RSBot.Inventory.Views
             if(GlobalConfig.Get<bool>("RSBot.DebugEnvironment") == false)
                 return;
 #endif
+            var inventoryItem = GetSelectedItem();
+            if (inventoryItem == null)
+                return;
 
-            var itemForm = new ItemProperties(listViewMain.SelectedItems[0].Tag as InventoryItem);
+            var itemForm = new ItemProperties(inventoryItem);
             itemForm.Show();
         }
 
@@ -357,13 +359,34 @@ namespace RSBot.Inventory.Views
             if (listViewMain.SelectedIndices.Count != 1)
                 return;
 
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
+            var inventoryItem = GetSelectedItem();
             if (inventoryItem == null)
                 return;
 
             var cos = _selectedIndex == 3;
             inventoryItem?.Drop(cos, Game.Player.AbilityPet.UniqueId);
+        }
+
+        private void LoadItemCondition(string itemCodeName)
+        {
+            var conditions = ConditionManager.GetItemConditions(itemCodeName);
+
+            afterTrainingPlaceToolStripMenuItem.Checked = false;
+            beforeTrainingPlaceToolStripMenuItem.Checked = false;
+            afterTeleportationToolStripMenuItem.Checked = false;
+            repeatAfterFinishToolStripMenuItem.Checked = false;
+
+            foreach (var condition in conditions)
+            {
+                if (condition.EventName == "OnFinishWalkScript")
+                    afterTrainingPlaceToolStripMenuItem.Checked = true;
+                else if (condition.EventName == "OnFinishTownScript")
+                    beforeTrainingPlaceToolStripMenuItem.Checked = true;
+                else if (condition.EventName == "OnLoadCharacter")
+                    afterTeleportationToolStripMenuItem.Checked = true;
+
+                repeatAfterFinishToolStripMenuItem.Checked = condition.Repeat;
+            }
         }
 
         private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -374,10 +397,11 @@ namespace RSBot.Inventory.Views
                 return;
             }
 
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
+            var inventoryItem = GetSelectedItem();
             if (inventoryItem == null)
                 return;
+
+            LoadItemCondition(inventoryItem.Record.CodeName);
 
             if (_selectedIndex != 0)
             {
@@ -431,12 +455,9 @@ namespace RSBot.Inventory.Views
             if (listViewMain.SelectedIndices.Count != 1)
                 return;
 
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
-            if (inventoryItem == null)
-                return;
-
-            inventoryItem.UseTo(2);
+            var inventoryItem = GetSelectedItem();
+            
+            inventoryItem?.UseTo(2);
         }
 
         private void moveToLastDeathPositionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -444,21 +465,17 @@ namespace RSBot.Inventory.Views
             if (listViewMain.SelectedIndices.Count != 1)
                 return;
 
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
-            if (inventoryItem == null)
-                return;
+            var inventoryItem = GetSelectedItem();
 
-            inventoryItem.UseTo(3);
+            inventoryItem?.UseTo(3);
         }
 
         private void moveToPetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listViewMain.SelectedIndices.Count != 1)
                 return;
-
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
+            
+            var inventoryItem = GetSelectedItem();
             if (inventoryItem == null)
                 return;
 
@@ -481,9 +498,8 @@ namespace RSBot.Inventory.Views
         {
             if (listViewMain.SelectedIndices.Count != 1)
                 return;
-
-            var listViewItem = listViewMain.SelectedItems[0];
-            var inventoryItem = listViewItem.Tag as InventoryItem;
+            
+            var inventoryItem = GetSelectedItem();
             if (inventoryItem == null)
                 return;
 
@@ -502,20 +518,109 @@ namespace RSBot.Inventory.Views
             PacketManager.SendPacket(packet, PacketDestination.Server);
         }
 
-        private void afterTrainingPlaceToolStripMenuItem_Click(object sender, EventArgs e)
+        private InventoryItem? GetSelectedItem()
         {
             var listViewItem = listViewMain.SelectedItems[0];
-            if (listViewItem.Tag is not InventoryItem inventoryItem)
+            return listViewItem.Tag is not InventoryItem inventoryItem ? null : inventoryItem;
+        }
+
+        private void afterTrainingPlaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var inventoryItem = GetSelectedItem();
+            if (inventoryItem == null)
                 return;
 
-            var condition = new ItemCondition
+            if (afterTrainingPlaceToolStripMenuItem.Checked)
+                ConditionManager.RemoveItemCondition(inventoryItem.Record.CodeName, "OnFinishWalkScript");
+            else
             {
-                EventName = "OnFinishScript",
-                ItemCodeName = inventoryItem.Record.CodeName,
-                Repeat = repeatAfterFinishToolStripMenuItem.Checked,
-            };
+                var condition = new ItemCondition
+                {
+                    EventName = "OnFinishWalkScript",
+                    ItemCodeName = inventoryItem.Record.CodeName,
+                    Repeat = repeatAfterFinishToolStripMenuItem.Checked,
+                };
 
-            ConditionManager.RegisterItemCondition(condition);
+                ConditionManager.AddItemCondition(condition);
+            }
+
+            afterTrainingPlaceToolStripMenuItem.Checked = !afterTrainingPlaceToolStripMenuItem.Checked;
+
+            ConditionManager.SaveConditions();
+        }
+
+        private void beforeTrainingPlaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var inventoryItem = GetSelectedItem();
+            if (inventoryItem == null)
+                return;
+
+            if (beforeTrainingPlaceToolStripMenuItem.Checked)
+                ConditionManager.RemoveItemCondition(inventoryItem.Record.CodeName, "OnFinishTownScript");
+            else
+            {
+                var condition = new ItemCondition
+                {
+                    EventName = "OnFinishTownScript",
+                    ItemCodeName = inventoryItem.Record.CodeName,
+                    Repeat = repeatAfterFinishToolStripMenuItem.Checked,
+                };
+
+                ConditionManager.AddItemCondition(condition);
+            }
+
+            beforeTrainingPlaceToolStripMenuItem.Checked = !beforeTrainingPlaceToolStripMenuItem.Checked;
+
+            ConditionManager.SaveConditions();
+        }
+
+        private void repeatAfterFinishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var inventoryItem = GetSelectedItem();
+            if (inventoryItem == null)
+                return;
+
+            var conditions = ConditionManager.GetItemConditions(inventoryItem.Record.CodeName);
+            if (conditions?.Count() == 0)
+            {
+                repeatAfterFinishToolStripMenuItem.Checked = false;
+
+                return;
+            }
+
+            foreach (var condition in conditions)
+            {
+                condition.Repeat = !repeatAfterFinishToolStripMenuItem.Checked;
+            }
+
+            repeatAfterFinishToolStripMenuItem.Checked = !repeatAfterFinishToolStripMenuItem.Checked;
+
+            ConditionManager.SaveConditions();
+        }
+
+        private void afterTeleportationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var inventoryItem = GetSelectedItem();
+            if (inventoryItem == null)
+                return;
+
+            if (afterTeleportationToolStripMenuItem.Checked)
+                ConditionManager.RemoveItemCondition(inventoryItem.Record.CodeName, "OnLoadCharacter");
+            else
+            {
+                var condition = new ItemCondition
+                {
+                    EventName = "OnLoadCharacter",
+                    ItemCodeName = inventoryItem.Record.CodeName,
+                    Repeat = repeatAfterFinishToolStripMenuItem.Checked,
+                };
+
+                ConditionManager.AddItemCondition(condition);
+            }
+
+            afterTeleportationToolStripMenuItem.Checked = !afterTeleportationToolStripMenuItem.Checked;
+
+            ConditionManager.SaveConditions();
         }
     }
 }

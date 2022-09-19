@@ -133,12 +133,15 @@ namespace RSBot.Default.Bundle.Loop
                     if (item.UseTo(3))
                     {
                         TownscriptRunning = false;
+                        EventManager.FireEvent("OnFinishTownScript");
+
                         return;
                     }
                 }
             }
 
             TownscriptRunning = false;
+            EventManager.FireEvent("OnFinishTownScript");
 
             Invoke();
 
@@ -159,8 +162,12 @@ namespace RSBot.Default.Bundle.Loop
             Invoke();
             Log.NotifyLang("LoadingWalkScript", Config.WalkScript);
             
+            EventManager.FireEvent("OnStartWalkScript");
+
             ScriptManager.Load(Config.WalkScript);
             ScriptManager.RunScript();
+
+            EventManager.FireEvent("OnFinishWalkScript");
         }
     }
 }
