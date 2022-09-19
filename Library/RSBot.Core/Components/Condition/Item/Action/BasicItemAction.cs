@@ -1,4 +1,4 @@
-﻿using System.Timers;
+﻿using System.Collections.Generic;
 using RSBot.Core.Objects;
 
 
@@ -6,8 +6,10 @@ namespace RSBot.Core.Components.Condition.Item.Action
 {
     public abstract class BasicItemAction : IItemConditionAction
     {
-        private const int CooldownDuration = 300; //in seconds (5 minutes)
+        private const int CooldownDuration = 300 * 1000; //in milliseconds (5 minutes)
         public virtual string EventName { get; }
+
+        private Dictionary<string, RecurringItemConditionTimer> _timers = new();
 
         public void Invoke(ItemCondition condition, InventoryItem? item)
         {
@@ -21,27 +23,19 @@ namespace RSBot.Core.Components.Condition.Item.Action
 
                 return;
             }
-            
-            var _timer = new Timer(CooldownDuration * 1000);
-            _timer.Elapsed += _timer_Elapsed;
-            
-            //Use for the first time
+
+            var timerKey = condition.EventName + ":" + condition.ItemCodeName;
+
+            if (!_timers.ContainsKey(timerKey))
+            {
+                var timer = new RecurringItemConditionTimer(item, CooldownDuration);
+                _timers.Add(item.Record.CodeName, timer);
+
+                timer.Start();
+            }
+
+            //Use for the first time, independent from the timer
             item.Use();
-        }
-
-        private void _timer_Elapsed(object? sender, ElapsedEventArgs e)
-        {
-            //if (_item == null)
-            //    return;
-
-            ////The item might have changed the slot since last time, so let's try to fetch the item again
-            //var actualItem = Game.Player.Inventory.GetItem(_item.Record.CodeName);
-
-            //if (actualItem == null)
-            //    return;
-
-            //_item = actualItem;
-            //_item.Use();
         }
     }
 }

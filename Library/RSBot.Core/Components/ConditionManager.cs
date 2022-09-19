@@ -25,14 +25,6 @@ namespace RSBot.Core.Components
             try
             {
                 ItemConditions = PlayerConfig.GetObject("RSBot.ItemConditions", new List<ItemCondition>());
-
-                //Todo: Remove
-                ItemConditions.Add(new ItemCondition
-                {
-                    EventName = "OnPlayerMove",
-                    ItemCodeName = "ITEM_ETC_HP_POTION_05",
-                    Repeat = true
-                });
             }
             catch (Exception ex)
             {
@@ -73,11 +65,6 @@ namespace RSBot.Core.Components
         private static void OnInvokeEvent(string eventName)
         {
             var actionTrigger = ItemActions.FirstOrDefault(a => a.EventName == eventName);
-
-            if (eventName == "OnPlayerMove")
-            {
-
-            }
 
             if (actionTrigger == null)
                 return;

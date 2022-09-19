@@ -89,10 +89,7 @@ namespace RSBot.Inventory.Views
         /// </summary>
         public void UpdateInventoryList()
         {
-            if (Parent == null)
-                return;
-
-            if (!Parent.Visible)
+            if (Parent is not { Visible: true })
                 return;
 
             if (Game.Player == null)
