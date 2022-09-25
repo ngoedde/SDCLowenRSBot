@@ -33,7 +33,7 @@ namespace RSBot.Core.Objects
         /// <c>true</c> if the NormalPart is full; otherwise, <c>false</c>.
         /// </value>
         public override bool Full => GetNormalPartItems().Count >= NormalPartSize;
-
+        
         /// <summary>
         /// Gets the first free slot number inside NormalPart.
         /// </summary>

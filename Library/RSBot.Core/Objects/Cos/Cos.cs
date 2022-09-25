@@ -126,8 +126,7 @@ namespace RSBot.Core.Objects.Cos
         /// <returns></returns>
         public virtual bool UseBadStatusPotion()
         {
-            var typeIdFilter = new TypeIdFilter(3, 3, 2, 7);
-            var item = Game.Player.Inventory.GetItem(typeIdFilter);
+            var item = Game.Player.Inventory.GetItem(CommonTypeId.PetBadStatusPotion);
             if (item == null)
                 return false;
 

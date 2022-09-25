@@ -47,6 +47,14 @@ namespace RSBot.Core.Objects
         public bool IsReadOnly => false;
 
         /// <summary>
+        /// Gets the available slots.
+        /// </summary>
+        /// <value>
+        /// The available slots.
+        /// </value>
+        public byte AvailableCapacity => (byte) (Capacity - Count);
+
+        /// <summary>
         /// <inheritdoc/>
         /// </summary>
         /// <param name="index">The index of the element</param>

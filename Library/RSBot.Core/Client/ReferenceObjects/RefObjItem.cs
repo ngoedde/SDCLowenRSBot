@@ -175,16 +175,6 @@
         public bool IsPotion => IsStackable && TypeID3 == 1;
 
         /// <summary>
-        /// A value indicating if the item is of type hp potion
-        /// </summary>
-        public bool IsHpPotion => IsPotion && TypeID4 == 1;
-
-        /// <summary>
-        /// A value indicating if the item is of type mp potion
-        /// </summary>
-        public bool IsMpPotion => IsPotion && TypeID4 == 2;
-
-        /// <summary>
         /// A value indicating if the item is of type all potion(vigor)
         /// </summary>
         public bool IsAllPotion => IsPotion && TypeID4 == 3;
@@ -398,7 +388,7 @@
             if (ItemClass < 31 || ItemClass > 34)
             {
                 //Seal of Star, Seal of Moon, Seal of Sun
-                switch (this.DegreeOffset)
+                switch (DegreeOffset)
                 {
                     case 0:
                         param = Game.ReferenceManager.GetTranslation("PARAM_RARE_FIRST");

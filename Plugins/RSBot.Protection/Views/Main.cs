@@ -41,6 +41,12 @@ namespace RSBot.Protection.Views
             EventManager.SubscribeEvent("OnIncreaseIntelligence", OnIncreaseStat);
         }
 
+        private void UpdateReturnToTownValues()
+        {
+            lblInventorySlotsAvailable.Text = $"x{Game.Player.Inventory.AvailableCapacity}";
+            lblNumAmmunitionAvailable.Text = $"x{Game.Player.GetAmmunitionAmount(true)}";
+        }
+
         /// <summary>
         /// Loads the settings.
         /// </summary>

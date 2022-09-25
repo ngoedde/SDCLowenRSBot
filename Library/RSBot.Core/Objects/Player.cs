@@ -708,7 +708,7 @@ namespace RSBot.Core.Objects
         /// </summary>
         public bool UseHealthPotion()
         {
-            return UsePotion(new TypeIdFilter(3, 3, 1, 1), ref _lastHpPotionTick, ref _lastHPDuration);
+            return UsePotion(CommonTypeId.HealthRecoveryPotion, ref _lastHpPotionTick, ref _lastHPDuration);
         }
 
         /// <summary>
@@ -716,7 +716,7 @@ namespace RSBot.Core.Objects
         /// </summary>
         public bool UseManaPotion()
         {
-            return UsePotion(new TypeIdFilter(3, 3, 1, 2), ref _lastMpPotionTick, ref _lastMPDuration);
+            return UsePotion(CommonTypeId.ManaRecoveryPotion, ref _lastMpPotionTick, ref _lastMPDuration);
         }
 
         /// <summary>
@@ -725,7 +725,7 @@ namespace RSBot.Core.Objects
         /// <returns></returns>
         public bool UseVigorPotion()
         {
-            return UsePotion(new TypeIdFilter(3, 3, 1, 3), ref _lastVigorPotionTick, ref _lastVigorDuration);
+            return UsePotion(CommonTypeId.VigorRecoveryPotion, ref _lastVigorPotionTick, ref _lastVigorDuration);
         }
 
         /// <summary>
@@ -896,7 +896,7 @@ namespace RSBot.Core.Objects
 
             var petLevel = petItem.Cos.Level;
             var rescueItem = Inventory.GetItem(p => p.Record.IsCosRevivalPotion &&
-                p.Record.CodeName.StartsWith("ITEM_PET2_GOODS_REVIVAL_") &&
+                p.Record.CodeName.StartsWith("ITEM_PET2_GOODS_REVIVAL_") && //TODO: Remove hardcoded codename and use typeId!
                 petLevel >= p.Record.ReqLevel1 && petLevel <= p.Record.ReqLevel2);
 
             if (rescueItem == null)
