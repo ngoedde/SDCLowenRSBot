@@ -46,7 +46,7 @@ namespace RSBot.Alchemy.Subscriber
         }
 
         /// <summary>
-        /// Will be triggered if any fuse request (either elixir or magic stone..) was sent to the server. Adds a log message.
+        /// Will be triggered if any fuse @object (either elixir or magic stone..) was sent to the server. Adds a log message.
         /// </summary>
         /// <param name="action">The alchemy action</param>
         /// <param name="type">The type of alchemy</param>

@@ -15,10 +15,10 @@ namespace RSBot.Core.Objects.Party
         public bool CanInvite => Settings.AllowInvitation || IsLeader || !IsInParty;
 
         /// <summary>
-        /// Gets a value indicating whether this instance has pending request.
+        /// Gets a value indicating whether this instance has pending @object.
         /// </summary>
         /// <value>
-        /// <c>true</c> if this instance has pending request; otherwise, <c>false</c>.
+        /// <c>true</c> if this instance has pending @object; otherwise, <c>false</c>.
         /// </value>
         public bool HasPendingRequest => Game.AcceptanceRequest?.Type == InviteRequestType.Party1 || Game.AcceptanceRequest?.Type == InviteRequestType.Party2 && Game.AcceptanceRequest.Player != null;
 

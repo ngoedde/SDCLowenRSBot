@@ -4,7 +4,7 @@ using RSBot.Core.Objects;
 namespace RSBot.Core.Components.Collision;
 
 /// <summary>
-/// The result of a collision request
+/// The result of a collision @object
 /// </summary>
 public struct CollisionResult
 {

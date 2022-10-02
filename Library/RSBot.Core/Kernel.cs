@@ -5,8 +5,10 @@ using RSBot.Core.Objects;
 using RSBot.Core.Plugins;
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using RSBot.Core.Network.SessionProxy;
 
 namespace RSBot.Core
 {
@@ -40,7 +42,7 @@ namespace RSBot.Core
         /// The proxy.
         /// </value>
         public static Proxy Proxy { get; internal set; }
-
+        
         /// <summary>
         /// Gets or sets the bot.
         /// </summary>
@@ -60,6 +62,11 @@ namespace RSBot.Core
         public static int TickCount => (Environment.TickCount & int.MaxValue);
 
         /// <summary>
+        /// The session proxy
+        /// </summary>
+        public static SessionProxy? SessionProxy;
+
+        /// <summary>
         /// Initializes this instance.
         /// </summary>
         public static void Initialize()
@@ -72,9 +79,26 @@ namespace RSBot.Core
             RegisterNetworkHandlers();
             RegisterNetworkHooks();
 
+            ConnectToSessionProxy();
+
             _updaterTokenSource = new CancellationTokenSource();
 
             Task.Factory.StartNew(ComponentUpdaterAsync, _updaterTokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current);
+        }
+
+        private static void ConnectToSessionProxy()
+        {
+            if (SessionProxy != null && SessionProxy.IsConnected)
+                return;
+
+            var sessionIp = GlobalConfig.Get("RSBot.SessionProxy.IP", "127.0.0.1");
+            var sessionPort = GlobalConfig.Get("RSBot.SessionProxy.Port", 17000);
+            if (!IPAddress.TryParse(sessionIp, out var ipAddress))
+                return;
+
+            var endpoint = new IPEndPoint(ipAddress, sessionPort);
+            SessionProxy = new SessionProxy();
+            SessionProxy.Connect(endpoint);
         }
 
         private static async Task ComponentUpdaterAsync()
@@ -147,6 +171,11 @@ namespace RSBot.Core
 
                 PacketManager.RegisterHook(instance);
             }
+        }
+
+        public static bool HasActiveSessionProxy()
+        {
+            return SessionProxy != null && SessionProxy.IsAuthenticated;
         }
     }
 }

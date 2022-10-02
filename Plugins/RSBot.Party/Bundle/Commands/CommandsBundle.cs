@@ -49,7 +49,7 @@ namespace RSBot.Party.Bundle.Commands
         }
 
         /// <summary>
-        /// Send trace request by speficied uniqueId
+        /// Send trace @object by speficied uniqueId
         /// </summary>
         /// <param name="uniqueId">The unique id</param>
         private void SendTraceRequest(uint uniqueId)
@@ -65,7 +65,7 @@ namespace RSBot.Party.Bundle.Commands
 
         
         /// <summary>
-        /// Send trace request by speficied uniqueId
+        /// Send trace @object by speficied uniqueId
         /// </summary>
         
         private void SendSitdownRequest()

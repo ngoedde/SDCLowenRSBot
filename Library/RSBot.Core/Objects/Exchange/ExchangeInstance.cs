@@ -79,7 +79,7 @@ namespace RSBot.Core.Objects.Exchange
         }
 
         /// <summary>
-        /// Completes the exchange request. It updates the inventory item by the temporary stored information.
+        /// Completes the exchange @object. It updates the inventory item by the temporary stored information.
         /// </summary>
         public void Complete()
         {

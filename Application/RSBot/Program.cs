@@ -2,6 +2,7 @@
 using RSBot.Core.Components;
 using RSBot.Views;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RSBot
@@ -9,7 +10,7 @@ namespace RSBot
     internal static class Program
     {
         [STAThread]
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             if(args.Length == 1)
             {

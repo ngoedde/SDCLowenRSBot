@@ -211,6 +211,7 @@ namespace RSBot.Views
             }
 
             Game.ReferenceManager.Load(GlobalConfig.Get<int>("RSBot.TranslationIndex", 9));
+            Kernel.SessionProxy?.Authenticate();
         }
     }
 }

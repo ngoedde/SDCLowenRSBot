@@ -439,8 +439,8 @@
             this.labelCommandsInfo.Name = "labelCommandsInfo";
             this.labelCommandsInfo.Size = new System.Drawing.Size(285, 77);
             this.labelCommandsInfo.TabIndex = 16;
-            this.labelCommandsInfo.Text = "Commands only using in the game chat window! \r\n\r\ntraceme: Send follow me request " +
-    "to players \r\nsitdown: Send sitdown request to players";
+            this.labelCommandsInfo.Text = "Commands only using in the game chat window! \r\n\r\ntraceme: Send follow me @object " +
+    "to players \r\nsitdown: Send sitdown @object to players";
             // 
             // separator2
             // 

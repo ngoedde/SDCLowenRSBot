@@ -1,8 +1,8 @@
 ﻿using RSBot.Core.Extensions;
-using RSBot.Core.Network.SecurityAPI;
 using System;
 using System.IO;
 using System.Text;
+using RSBot.Core.Network.Protocol;
 
 namespace RSBot.Core.Network
 {

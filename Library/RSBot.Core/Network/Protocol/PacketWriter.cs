@@ -1,20 +1,20 @@
 ﻿using System.IO;
 
-namespace RSBot.Core.Network.SecurityAPI
+namespace RSBot.Core.Network.Protocol
 {
-    internal class PacketWriter : BinaryWriter
+    public class PacketWriter : BinaryWriter
     {
-        private MemoryStream m_ms;
+        private MemoryStream _memoryStream;
 
         public PacketWriter()
         {
-            m_ms = new MemoryStream();
-            this.OutStream = m_ms;
+            _memoryStream = new MemoryStream();
+            OutStream = _memoryStream;
         }
 
         public byte[] GetBytes()
         {
-            return m_ms.ToArray();
+            return _memoryStream.ToArray();
         }
     }
 }

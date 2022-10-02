@@ -105,7 +105,7 @@ namespace RSBot.Alchemy.Bundle.Attribute
         #region Events
 
         /// <summary>
-        /// Will be triggered if any fuse request was sent to the server
+        /// Will be triggered if any fuse @object was sent to the server
         /// </summary>
         /// <param name="action"></param>
         /// <param name="type"></param>

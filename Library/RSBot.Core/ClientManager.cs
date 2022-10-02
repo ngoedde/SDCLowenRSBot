@@ -160,12 +160,15 @@ namespace RSBot.Core
             var division = Game.ReferenceManager.DivisionInfo.Divisions[divisionIndex];
             var gatewayPort = Game.ReferenceManager.GatewayInfo.Port;
 
-            var redirectIp = "127.0.0.1";
+            var redirectIp = Kernel.SessionProxy.IsAuthenticated ? Kernel.SessionProxy.Session.ClientRedirectIp : "127.0.0.1";
+            var redirectPort = Kernel.SessionProxy.IsAuthenticated
+                ? Kernel.SessionProxy.Session.ClientRedirectPort
+                : Kernel.Proxy.Port;
             using (var writer = new BinaryWriter(new FileStream(Path.Combine(Path.GetTempPath(), tmpConfigFile), FileMode.Create)))
             {
                 writer.Write(GlobalConfig.Get<bool>("RSBot.Loader.DebugMode"));
                 writer.WriteAscii(redirectIp);
-                writer.Write(Kernel.Proxy.Port);
+                writer.Write(redirectPort);
                 writer.Write(division.GatewayServers.Count);
                 foreach (var gatewayServer in division.GatewayServers)
                     writer.WriteAscii(gatewayServer);

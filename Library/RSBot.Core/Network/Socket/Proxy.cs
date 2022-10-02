@@ -20,7 +20,7 @@ namespace RSBot.Core.Network
         /// The port.
         /// </value>
         public ushort Port { get; private set; }
-
+        
         /// <summary>
         /// Gets the client.
         /// </summary>
@@ -78,15 +78,17 @@ namespace RSBot.Core.Network
         /// <param name="gatewayPort">The gateway port.</param>
         public void Start(ushort clientPort, string gatewayIp, ushort gatewayPort)
         {
+            //if (!Game.Clientless)
+            CreateNewClientInstance(clientPort);
+            CreateNewServerInstance();
+            //else
+            //    ConnectToGatewayserver();
+
             Port = clientPort;
             _gatewayIp = gatewayIp;
             _gatewayPort = gatewayPort;
-
-            if (!Game.Clientless)
-                CreateNewClientInstance(clientPort);
-            else
-                ConnectToGatewayserver();
         }
+        
 
         /// <summary>
         /// Shutdowns this instance.
@@ -108,16 +110,24 @@ namespace RSBot.Core.Network
         /// <summary>
         /// Connects to gatewayserver.
         /// </summary>
-        private void ConnectToGatewayserver()
+        public void ConnectToGatewayserver()
         {
             Log.Notify($"Connecting to gateway server [{_gatewayIp}:{_gatewayPort}]...");
 
-            CreateNewServerInstance();
-
             IsConnectedToAgentserver = false;
-            IsConnectedToGatewayserver = true;
 
-            Server.Connect(_gatewayIp, _gatewayPort);
+            if (!Kernel.HasActiveSessionProxy())
+            {
+                CreateNewServerInstance();
+
+                Server.Connect(_gatewayIp, _gatewayPort);
+            }
+            else
+            {
+                Server.Connect(Kernel.SessionProxy.Session.ProxyIp, Kernel.SessionProxy.Session.ProxyPort);
+            }
+
+            IsConnectedToGatewayserver = true;
         }
 
         /// <summary>

@@ -3,7 +3,7 @@ using System.Net.NetworkInformation;
 
 namespace RSBot.Core.Network
 {
-    internal class NetworkUtilities
+    public class NetworkUtilities
     {
         /// <summary>Get Free Port
         /// Returns the first free port between a range

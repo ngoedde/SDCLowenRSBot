@@ -101,9 +101,9 @@ public static class CollisionManager
 
         while (fileStream.ReadBoolean())
         {
-            var collisionMesh = new RSCollisionMesh(fileStream);
+            //var collisionMesh = new RSCollisionMesh(fileStream);
 
-            _loadedCollisions.Add(collisionMesh.RegionId, collisionMesh);
+            //_loadedCollisions.Add(collisionMesh.RegionId, collisionMesh);
         }
 
         Log.Notify($"[Collision] Loaded {_loadedCollisions.Count} collision regions in {sw.ElapsedMilliseconds}ms");

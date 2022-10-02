@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace RSBot.Core.Network.SecurityAPI
+namespace RSBot.Core.Network.Protocol
 {
     internal class SecurityProtocol
     {

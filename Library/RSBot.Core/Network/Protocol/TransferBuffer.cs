@@ -1,4 +1,4 @@
-﻿namespace RSBot.Core.Network.SecurityAPI
+﻿namespace RSBot.Core.Network.Protocol
 {
     internal class TransferBuffer
     {

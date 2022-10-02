@@ -2,11 +2,11 @@
 using RSBot.Core.Components;
 using RSBot.Core.Event;
 using RSBot.Core.Network;
-using RSBot.Core.Network.SecurityAPI;
 using RSBot.General.Models;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RSBot.Core.Network.Protocol;
 
 namespace RSBot.General.Components
 {
@@ -69,7 +69,7 @@ namespace RSBot.General.Components
                 return;
             }
 
-            //Wait for the configured delay before sending the login request
+            //Wait for the configured delay before sending the login @object
             if (GlobalConfig.Get("RSBot.General.EnableLoginDelay", false))
             {
                 var delay = GlobalConfig.Get("RSBot.General.LoginDelay", 10) * 1000;
@@ -109,7 +109,7 @@ namespace RSBot.General.Components
         }
 
         /// <summary>
-        /// Sends the login request.
+        /// Sends the login @object.
         /// </summary>
         /// <param name="account">The account.</param>
         /// <param name="server">The server.</param>

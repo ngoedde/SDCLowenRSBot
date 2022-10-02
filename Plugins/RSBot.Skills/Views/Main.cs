@@ -662,7 +662,7 @@ namespace RSBot.Skills.Views
         }
 
         /// <summary>
-        /// Core_s the on resurrection request
+        /// Core_s the on resurrection @object
         /// </summary>
         private void OnResurrectionRequest()
         {

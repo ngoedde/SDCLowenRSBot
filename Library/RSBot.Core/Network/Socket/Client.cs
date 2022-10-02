@@ -1,26 +1,27 @@
-﻿using RSBot.Core.Network.SecurityAPI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Threading.Tasks;
+using RSBot.Core.Network.Protocol;
 
 namespace RSBot.Core.Network
 {
     public class Client
     {
         public delegate void ConnectedEventHandler();
+
         public event ConnectedEventHandler OnConnected;
 
         public delegate void DisconnectedEventHandler();
+
         public event DisconnectedEventHandler OnDisconnected;
 
         public delegate void PacketReceivedEventHandler(Packet packet);
+
         public event PacketReceivedEventHandler OnPacketReceived;
-        
+
         public delegate void PacketSentEventHandler(Packet packet);
+
         public event PacketSentEventHandler OnPacketSent;
 
         /// <summary>
@@ -104,7 +105,6 @@ namespace RSBot.Core.Network
             }
             catch
             {
-
             }
         }
 
@@ -182,7 +182,7 @@ namespace RSBot.Core.Network
                 _protocol.GenerateSecurity(true, true, true);
 
                 _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, OnBeginReceiveCallback, null);
-                
+
                 OnConnected?.Invoke();
             }
             catch (Exception)
@@ -206,7 +206,7 @@ namespace RSBot.Core.Network
             try
             {
                 receivedSize = _socket.EndReceive(ar, out var error);
-                if(receivedSize == 0 || error != SocketError.Success)
+                if (receivedSize == 0 || error != SocketError.Success)
                 {
                     OnDisconnected?.Invoke();
                     Listen();
@@ -233,7 +233,7 @@ namespace RSBot.Core.Network
             {
                 try
                 {
-                    if(receivedSize != 0 && _socket != null && _socket.Connected)
+                    if (receivedSize != 0 && _socket != null && _socket.Connected)
                         _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, OnBeginReceiveCallback, null);
                 }
                 catch
@@ -303,7 +303,7 @@ namespace RSBot.Core.Network
 
                 foreach (var buffer in _protocol.TransferOutgoing())
                 {
-                    //if (_socket == null || IsClosing || !EnablePacketProcessor || !_socket.Connected)
+                    //if (Socket == null || IsClosing || !EnablePacketProcessor || !Socket.Connected)
                     //return;
 
                     _socket.Send(buffer);

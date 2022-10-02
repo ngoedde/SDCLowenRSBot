@@ -344,7 +344,7 @@ namespace RSBot.Alchemy.Bundle.Enhance
         }
 
         /// <summary>
-        /// Called when [fuse request].
+        /// Called when [fuse @object].
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="type">The type.</param>

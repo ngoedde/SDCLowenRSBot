@@ -168,6 +168,9 @@ namespace RSBot.General.Views
         {
             Game.Start();
 
+            if (Kernel.SessionProxy == null || Kernel.SessionProxy.IsAuthenticating)
+                return;
+
             var startedResult = await ClientManager.Start().ConfigureAwait(false);
             if (!startedResult)
                 Log.WarnLang("ClientStartingError");

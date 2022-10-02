@@ -7,6 +7,7 @@ using RSBot.Core.Objects.Party;
 using RSBot.Core.Objects.Spawn;
 using System;
 using System.IO;
+using System.Threading;
 
 namespace RSBot.Core
 {
@@ -77,7 +78,7 @@ namespace RSBot.Core
         public static Party Party { get; internal set; }
 
         /// <summary>
-        /// The acceptance request
+        /// The acceptance @object
         /// </summary>
         public static AcceptanceRequest AcceptanceRequest;
 
@@ -126,15 +127,27 @@ namespace RSBot.Core
             if (Kernel.Proxy != null)
                 Kernel.Proxy.Shutdown();
 
-            var divisionIndex = GlobalConfig.Get<int>("RSBot.DivisionIndex");
-            var severIndex = GlobalConfig.Get<int>("RSBot.GatewayIndex");
 
             Port = NetworkUtilities.GetFreePort(1500, 2000, 1);
 
-            Kernel.Proxy = new Proxy();
-            Kernel.Proxy.Start(Port, ReferenceManager.DivisionInfo.Divisions[divisionIndex].GatewayServers[severIndex], ReferenceManager.GatewayInfo.Port);
+            
+            Thread.Sleep(1000);
+            
+            var divisionIndex = GlobalConfig.Get<int>("RSBot.DivisionIndex");
+            var severIndex = GlobalConfig.Get<int>("RSBot.GatewayIndex");
+            
 
-            Started = true;
+            if (!Kernel.SessionProxy.IsConnected)
+            {
+                Kernel.Proxy = new Network.Proxy();
+                Kernel.Proxy.Start(Port, ReferenceManager.DivisionInfo.Divisions[divisionIndex].GatewayServers[severIndex], ReferenceManager.GatewayInfo.Port);
+            }
+            else
+            {
+                //Kernel.SessionProxy?.Authenticate();
+            }
+
+            Started = false;
         }
 
         /// <summary>

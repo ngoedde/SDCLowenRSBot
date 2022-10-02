@@ -1,12 +1,12 @@
 ﻿using RSBot.Core;
 using RSBot.Core.Components;
-using RSBot.Core.Network.SecurityAPI;
 using RSBot.General.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using RSBot.Core.Network.Protocol;
 
 namespace RSBot.General.Components
 {

@@ -8,7 +8,7 @@ namespace RSBot.Core.Objects
     public class AcceptanceRequest
     {
         /// <summary>
-        /// The settings [note:just need for party request]
+        /// The settings [note:just need for party @object]
         /// </summary>
         public PartySettings Settings;
 
@@ -31,7 +31,7 @@ namespace RSBot.Core.Objects
         public SpawnedPlayer Player => SpawnManager.GetEntity<SpawnedPlayer>(PlayerUniqueId);
 
         /// <summary>
-        /// Accepts this party request
+        /// Accepts this party @object
         /// </summary>
         public void Accept()
         {
@@ -43,7 +43,7 @@ namespace RSBot.Core.Objects
         }
 
         /// <summary>
-        /// Refuses this party request.
+        /// Refuses this party @object.
         /// </summary>
         public void Refuse()
         {

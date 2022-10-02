@@ -1,21 +1,21 @@
 ﻿using System.IO;
 
-namespace RSBot.Core.Network.SecurityAPI
+namespace RSBot.Core.Network.Protocol
 {
-    internal class PacketReader : System.IO.BinaryReader
+    public class PacketReader : BinaryReader
     {
-        private byte[] m_input;
+        private byte[] _buffer;
 
         public PacketReader(byte[] input)
             : base(new MemoryStream(input, false))
         {
-            m_input = input;
+            _buffer = input;
         }
 
         public PacketReader(byte[] input, int index, int count)
             : base(new MemoryStream(input, index, count, false))
         {
-            m_input = input;
+            _buffer = input;
         }
     }
 }

@@ -17,12 +17,12 @@ namespace RSBot.Party.Subscribers
         }
 
         /// <summary>
-        /// Checks the request.
+        /// Checks the @object.
         /// </summary>
         /// <returns></returns>
         private static bool CheckRequest()
         {
-            //Check for the pending request
+            //Check for the pending @object
             if (!Game.Party.HasPendingRequest) return false;
 
             Log.NotifyLang("PartyPlayerInvite", Game.AcceptanceRequest.Player.Name);
